@@ -1,0 +1,126 @@
+ @font-face {
+	font-family: 'Anonymous Pro'; /* Имя шрифта */
+	src: url(asset://rat/fonts/Anonymous_Pro.ttf); /* Путь к файлу со шрифтом */
+	src: url(/fonts/Anonymous_Pro.ttf);
+}
+
+@font-face {
+	font-family: 'Anonymous Pro'; /* Имя шрифта */
+	src: url(asset://rat/fonts/Anonymous_Pro_B.ttf); /* Путь к файлу со шрифтом */
+	src: url(/fonts/Anonymous_Pro_B.ttf);
+    font-weight: bold;
+}
+
+a{
+	color: green;
+}
+
+/*Контейнер чата*/
+.container{
+	overflow: hidden;
+	position: fixed;
+	width: 90%;
+}
+
+/*Подстветка имени*/
+.message_name{
+    display: inline-block;
+    position: relative;
+    /*margin: -5px 5px 5px 5px;*/
+    color: yellow;
+    margin-right: 5px;
+}
+
+.message_source{
+	margin-right: 2px;
+}
+
+/*Подсветка системного*/
+.message_textsys{
+    display: inline-block;
+    position: relative;
+    color: #aaffaa;
+    /*margin: -5px 5px 5px 5px;*/
+    margin-right: 5px;
+    font-weight: bold;
+}
+
+/*Текст*/
+.message_text{
+    position: relative;
+    color: white;
+}
+
+/*Опыт*/
+.message_exp{
+	color: #77ffff;
+	margin-right: 3px;
+}
+
+/*Уровень*/
+.message_level{
+	width: 16px;
+	height: 16px;
+	margin-left: 2px;
+}
+
+/*Текст для стримера*/
+.message_texttm{
+	color: orange;
+}
+
+/*Ссылка*/
+.message_link{
+	color: green;
+}
+
+.message_badge{
+	margin-right: 1px;
+	width: 16px;
+	height: 16px;
+}
+
+
+/*Сообщение*/
+.message{
+    /*overflow: hidden;*/
+	/*position: relative;*/
+	width: 100%;
+	height: auto;
+	/*display: inline-block;*/
+	background-color: rgba(255, 255, 255, 0.4);	
+	margin-top: 1px;
+	text-shadow: 0 1px 1px black;
+	border-left: solid 3px rgba(255, 255, 255, 0.0);
+	padding-top: 1px;
+	padding-right: 10px;
+	/*z-index: -2;*/
+	font-family: 'Anonymous Pro';
+}
+
+/*Сообщение для стримера*/
+.messagetm{
+	width: 100%;
+	height: auto;
+	display: inline-block;
+	background-color: rgba(255, 255, 255, 0.4);	
+	border-left: solid 3px orange;
+	text-shadow: 0 1px 1px black;
+	margin-top: 1px;
+	padding: 1px;
+	font-family: 'Anonymous Pro';
+}
+
+/*Сообщение системное*/
+.messagesys{
+	width: 100%;
+	height: auto;
+	display: inline-block;
+	background-color: rgba(255, 255, 255, 0.4);	
+	margin-top: 1px;
+	border-left: solid 3px red;
+	text-shadow: 0 1px 1px black;
+	padding: 1px;
+	padding-left: 4px;
+	font-family: 'Anonymous Pro';
+}

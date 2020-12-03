@@ -1,0 +1,361 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="dbt_cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="dbt_ok" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="dtb_ChatSource" xml:space="preserve">
+    <value>Chat source:</value>
+  </data>
+  <data name="MES_FatalError" xml:space="preserve">
+    <value>Fatal error, please restart program.</value>
+  </data>
+  <data name="MES_Label" xml:space="preserve">
+    <value>Chat label:</value>
+  </data>
+  <data name="MES_Streamer" xml:space="preserve">
+    <value>Streamer nick:</value>
+  </data>
+  <data name="cxt_AddChatSource" xml:space="preserve">
+    <value>Add chat source...</value>
+  </data>
+  <data name="cxt_Close" xml:space="preserve">
+    <value>Close TwoRatChat</value>
+  </data>
+  <data name="cxt_ReloadChat" xml:space="preserve">
+    <value>Reload chat</value>
+  </data>
+  <data name="cxt_CloseChat" xml:space="preserve">
+    <value>Close chat source</value>
+  </data>
+  <data name="cxt_Options" xml:space="preserve">
+    <value>Show options...</value>
+  </data>
+  <data name="OPT_AccentColor" xml:space="preserve">
+    <value>Accent color:</value>
+  </data>
+  <data name="OPT_BackColor" xml:space="preserve">
+    <value>Background color:</value>
+  </data>
+  <data name="OPT_Border" xml:space="preserve">
+    <value>Show border:</value>
+  </data>
+  <data name="OPT_OverlayMode" xml:space="preserve">
+    <value>Enable overlay mode (reload required):</value>
+  </data>
+  <data name="OPT_TopMost" xml:space="preserve">
+    <value>Always on top:</value>
+  </data>
+  <data name="TAB_About" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="TAB_Main" xml:space="preserve">
+    <value>Main</value>
+  </data>
+  <data name="TAB_Urls" xml:space="preserve">
+    <value>Chat urls</value>
+  </data>
+  <data name="BUT_ApplySkin" xml:space="preserve">
+    <value>Apply (reload) skin:</value>
+  </data>
+  <data name="OPT_DisableFullDrag" xml:space="preserve">
+    <value>Disable full window dragging:</value>
+  </data>
+  <data name="OPT_Skin" xml:space="preserve">
+    <value>Chat root html (skin):</value>
+  </data>
+  <data name="OPT_ImagePath" xml:space="preserve">
+    <value>Save chat as image (*.png):</value>
+  </data>
+  <data name="OPT_MouseTransparent" xml:space="preserve">
+    <value>Is window mouse transparent:</value>
+  </data>
+  <data name="MES_StreamerOrID" xml:space="preserve">
+    <value>Streamer nick or ID:</value>
+  </data>
+  <data name="cxt_Blacklist" xml:space="preserve">
+    <value>Show blacklist editor...</value>
+  </data>
+  <data name="cxt_Fortunering" xml:space="preserve">
+    <value>Show fortune ring editor...</value>
+  </data>
+  <data name="cxt_Polleditor" xml:space="preserve">
+    <value>Show poll editor...</value>
+  </data>
+  <data name="MES_HttpEnable" xml:space="preserve">
+    <value>Enable server</value>
+  </data>
+  <data name="MES_HttpListen" xml:space="preserve">
+    <value>Http listen uri (reload required):</value>
+  </data>
+  <data name="MES_GGAllowAnimated" xml:space="preserve">
+    <value>Allow GG animated smiles (reload required):</value>
+  </data>
+  <data name="MES_GGAllowChannel" xml:space="preserve">
+    <value>Allow GG premium smiles (reload required):</value>
+  </data>
+  <data name="cxt_SkinDesigner" xml:space="preserve">
+    <value>Open skin designer...</value>
+  </data>
+  <data name="MES_Id" xml:space="preserve">
+    <value>Youtube video ID:</value>
+  </data>
+  <data name="tip_PollAllowChange" xml:space="preserve">
+    <value>Allow user change choice:</value>
+  </data>
+  <data name="tip_PollAllowRemove" xml:space="preserve">
+    <value>Allow user remove choice:</value>
+  </data>
+  <data name="Welcome" xml:space="preserve">
+    <value>Welcome to TwoRatChat.
+Please, press the right mouse button to add chat source.</value>
+  </data>
+  <data name="ERROR_001" xml:space="preserve">
+    <value>Error 001: Channel not found.</value>
+  </data>
+  <data name="ERROR_002" xml:space="preserve">
+    <value>Error 002: Site API was changed.</value>
+  </data>
+  <data name="MES_Options" xml:space="preserve">
+    <value>TwoRatChat options.</value>
+  </data>
+  <data name="MES_UrlWarning" xml:space="preserve">
+    <value>WARNING! Do not change this urls by yourself. After changes reboot required!</value>
+  </data>
+  <data name="cxt_CommandEditor" xml:space="preserve">
+    <value>Command editor...</value>
+  </data>
+  <data name="OPT_ShowTwitchSubsIcon" xml:space="preserve">
+    <value>Show twitch subscriber icon (reload required):</value>
+  </data>
+  <data name="OPT_UseColors" xml:space="preserve">
+    <value>Allow twitch colors (only new messages):</value>
+  </data>
+  <data name="MES_Deleted" xml:space="preserve">
+    <value>&lt;Message deleted&gt;</value>
+  </data>
+  <data name="OPT_AllowHitboxColors" xml:space="preserve">
+    <value>Allow hitbox colors (only new messages):</value>
+  </data>
+  <data name="cxt_ResetPosition" xml:space="preserve">
+    <value>Reset chat window position</value>
+  </data>
+  <data name="cxt_CancelMenu" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="tip_goodGameTooltip" xml:space="preserve">
+    <value>Кол-во зрителей/кол-во людей в чате/Позиция среди стримов (меньше - лучше)</value>
+  </data>
+  <data name="TAB_Bot" xml:space="preserve">
+    <value>Bot</value>
+  </data>
+  <data name="MES_BotWarning" xml:space="preserve">
+    <value>Пароли и логины хранятся с минимальным шифрованием на жестком диске (в файле настройки). Хранить их тут небезопасно!</value>
+  </data>
+  <data name="NewFollowerMessage" xml:space="preserve">
+    <value>{0} стал новым фолловером!</value>
+  </data>
+  <data name="OPT_FollowersInChat" xml:space="preserve">
+    <value>Show "new follower" message in chat:</value>
+  </data>
+  <data name="OPT_GGHeaderMode" xml:space="preserve">
+    <value>Goodgame header mode:</value>
+  </data>
+  <data name="OPT_CheckFollowers" xml:space="preserve">
+    <value>Allow check twitch followers:</value>
+  </data>
+  <data name="OPT_AllowLeveling" xml:space="preserve">
+    <value>Allow leveling (only new messages):</value>
+  </data>
+  <data name="OPT_PlaySoundOnFirstMessage" xml:space="preserve">
+    <value>Activate command on first message:</value>
+  </data>
+  <data name="OPT_OverlayMode2" xml:space="preserve">
+    <value>(Sometime OBS or XSplit require to this option)</value>
+  </data>
+  <data name="TAB_Awards" xml:space="preserve">
+    <value>Awards</value>
+  </data>
+  <data name="OPT_DowloadHistory" xml:space="preserve">
+    <value>Download history:</value>
+  </data>
+  <data name="OPT_YoutubeIcon" xml:space="preserve">
+    <value>Show youtube user icon:</value>
+  </data>
+  <data name="OPT_voice_FirstMeet" xml:space="preserve">
+    <value>Voice on first message (clear to silence):</value>
+  </data>
+  <data name="OPT_voice_Followers" xml:space="preserve">
+    <value>Voice on follower (clear to silence):</value>
+  </data>
+  <data name="OPT_voice_Personals" xml:space="preserve">
+    <value>Custom voice for viewers (require restart):</value>
+  </data>
+  <data name="OPT_voice_Promoute" xml:space="preserve">
+    <value>Voice on promoute message (clear to silence):</value>
+  </data>
+  <data name="TAB_Voice" xml:space="preserve">
+    <value>Voice</value>
+  </data>
+  <data name="MES_StrId" xml:space="preserve">
+    <value>Streamer ID:</value>
+  </data>
+  <data name="OPT_MaxImageSize" xml:space="preserve">
+    <value>Max image size:</value>
+  </data>
+  <data name="OPT_ShowUrlsAsImages" xml:space="preserve">
+    <value>Show images from urls:</value>
+  </data>
+  <data name="OPT_ShowImagesFrom" xml:space="preserve">
+    <value>Show images from:</value>
+  </data>
+  <data name="MES_ChannelOrID" xml:space="preserve">
+    <value>Stream channel or ID:</value>
+  </data>
+  <data name="OPT_ShowInTaskbar" xml:space="preserve">
+    <value>Show button in taskbar (EXPERIMENTAL):</value>
+  </data>
+  <data name="OPT_YoutubeAPIKey" xml:space="preserve">
+    <value>Custom Youtube API KEY:</value>
+  </data>
+  <data name="tip_FRPhrase" xml:space="preserve">
+    <value>1. Enter here 'pick phrase' to select brave from chat.</value>
+  </data>
+  <data name="tip_FRSeconds" xml:space="preserve">
+    <value>3. Seconds before select.</value>
+  </data>
+  <data name="tip_FRWinners" xml:space="preserve">
+    <value>2. Winners count (default 1).</value>
+  </data>
+  <data name="cxt_CustomUsers" xml:space="preserve">
+    <value>База данных зрителей...</value>
+  </data>
+  <data name="OPT_voice_ask" xml:space="preserve">
+    <value>Текст с вопросом:</value>
+  </data>
+  <data name="OPT_voice_caps" xml:space="preserve">
+    <value>Восклицание:</value>
+  </data>
+  <data name="OPT_voice_talk" xml:space="preserve">
+    <value>Обычный текст:</value>
+  </data>
+</root>

@@ -1,0 +1,168 @@
+<html>
+<!--%SAVEBEGIN%tworat.trct|id=animShow,value=fadeInRight|id=animHide,value=bounceOutRight|id=maxMessages,value=20|id=sexTssem,value=#FF00EE00|id=mesnamefont3,value=Arial,size=16|id=mesnamesty3,value=font-weight: bold;|id=mesnamecol3,value=#FFE9193D|id=mestextfont3,value=Arial,size=16|id=mestextfsty3,value=|id=mestextfcol3,value=#FFDA0F27|id=mesback3,value=#88FFFFFF|id=messhadow3,value=|id=mestop3,value=|id=mesimage3,img1=homm-tile.png,t1=16,t2=16,t3=16,t4=16,img2=homm-back.png|id=mesnamefont2,value=Consolas,size=12|id=mesnamesty2,value=font-weight: bold;|id=mesnamecol2,value=#FFBD5000|id=mestextfont2,value=Consolas,size=12|id=mestextfsty2,value=|id=mestextfcol2,value=#FF55FF77|id=mesback2,value=#88FFFFFF|id=messhadow2,value=|id=mestop2,value=|id=mesimage2,img1=homm-tile.png,t1=16,t2=16,t3=16,t4=16,img2=homm-back.png|id=mesnamefont,value=Consolas,size=12|id=mesnamesty,value=font-weight: bold;|id=mesnamecol,value=#FF9F8D01|id=mestextfont,value=Consolas,size=12|id=mestextfsty,value=|id=mestextfcol,value=#FFFFFFFF|id=mesback,value=#88FFFFFF|id=messhadow,value=|id=mestop,value=margin-top: 2px;|id=mesimage,img1=homm-tile.png,t1=16,t2=16,t3=16,t4=16,img2=homm-back.png|%SAVEEND%-->
+<!--%NAME=TwoRatChat default template%-->
+<!--%EXT=HTML%-->
+<!--%DESC=Шаблон для чата, который занимает всю область.%-->
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <link rel="stylesheet" href="/tworat/css/animate.min.css">
+    <script type="text/javascript">
+        var _animShow ='fadeInRight';
+        var _animHide = 'bounceOutRight';
+
+        var _rootChat = "/tworat/chat/";
+        var _rootAsset = "/tworat/";
+        var _maxMessages = 20;
+    </script>
+    <script src="/tworat/js/shared.js"></script>
+    <script src="/tworat/js/chat.js"></script>
+
+<style type="text/css">
+::-webkit-scrollbar {
+	visibility: hidden;
+}
+html, body {
+    background-color: rgba(255,255,255,0.0);
+    opacity: 0.99;
+    padding: 0 0 0 0;
+    margin: 0 0 0 0;
+    font-size: 20;
+}
+#root{
+	/*margin: -50px 30px 0px 0px;*/
+    height: 100%;
+    overflow:hidden;
+    z-index:-1; /* Remove this line if it's not going to be a background! */
+    /*-webkit-transform: rotateY(-10deg);*/
+}
+
+#back3d{
+    padding: 0px;
+   /*-webkit-perspective: 400px; */
+}
+
+/*Контейнер чата*/
+.container{
+	overflow: hidden;
+	position: fixed;
+	width: 90%;
+}
+
+.message_badge{
+	margin-right: 1px;
+	width: 16px;
+	height: 16px;
+}
+
+.message_link{
+}
+
+.imgfromurl{
+}
+
+a{
+	color:#00EE00;
+}
+
+/*//////////////////////// Сообщение системное //////////////////////////////*/
+
+.messagesys .name{
+    display: inline-block;
+    position: relative;
+	font-family: 'Arial'; font-size: 16pt; 
+    font-weight: bold;
+    color: #E9193D;
+    margin-right: 5px;
+}
+
+.messagesys .text{
+    position: relative;
+	font-family: 'Arial'; font-size: 16pt; 
+    
+    color: #DA0F27;
+}
+
+.messagesys{
+	height: auto;
+	background-color: rgba( 255, 255, 255, 0.5333334 );
+
+
+background:url(/tworat/img/borders/homm-tile.png);border-style: solid;border-width: 16px 16px 16px 16px;-webkit-border-image: url(/tworat/img/borders/homm-back.png) 16 16 16 16 round round;
+}
+
+/*//////////////////////// Сообщение выделенное //////////////////////////////*/
+
+.messagetm .name{
+    display: inline-block;
+    position: relative;
+	font-family: 'Consolas'; font-size: 12pt; 
+    font-weight: bold;
+    color: #BD5000;
+    margin-right: 5px;
+}
+
+.messagetm .text{
+    position: relative;
+	font-family: 'Consolas'; font-size: 12pt; 
+    
+    color: #55FF77;
+}
+
+.messagetm{
+	height: auto;
+	background-color: rgba( 255, 255, 255, 0.5333334 );
+
+
+background:url(/tworat/img/borders/homm-tile.png);border-style: solid;border-width: 16px 16px 16px 16px;-webkit-border-image: url(/tworat/img/borders/homm-back.png) 16 16 16 16 round round;
+}
+
+
+
+
+/*//////////////////////// Сообщение обычное //////////////////////////////*/
+
+
+.message .name{
+    display: inline-block;
+    position: relative;
+	font-family: 'Consolas'; font-size: 12pt; 
+    font-weight: bold;
+    color: #9F8D01;
+    margin-right: 5px;
+}
+
+.message .text{
+    position: relative;
+	font-family: 'Consolas'; font-size: 12pt; 
+    
+    color: #FFFFFF;
+}
+
+.message{
+	height: auto;
+	background-color: rgba( 255, 255, 255, 0.5333334 );
+
+margin-top: 2px;
+background:url(/tworat/img/borders/homm-tile.png);border-style: solid;border-width: 16px 16px 16px 16px;-webkit-border-image: url(/tworat/img/borders/homm-back.png) 16 16 16 16 round round;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+</style>
+</head>
+<body onload="onStart();">
+<div id="back3d">
+<div id="root">
+    <div style="height:2000px" />
+</div></div>
+</body>
+</html>

@@ -1,0 +1,168 @@
+<html>
+<!--%SAVEBLOCK%-->
+<!--%NAME=TwoRatChat default template%-->
+<!--%EXT=HTML%-->
+<!--%DESC=Шаблон для чата, который занимает всю область.%-->
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <link rel="stylesheet" href="/tworat/css/animate.min.css">
+    <script type="text/javascript">
+        var _animShow ='%PROPSTART|id=animShow|group=Общие|type=enum|caption=Анимация появления|default=bounceInRight|variants=bounce¶flash¶pulse¶rubberBand¶shake¶swing¶tada¶wobble¶jello¶bounceIn¶bounceInDown¶bounceInLeft¶bounceInRight¶bounceInUp¶fadeIn¶fadeInDown¶fadeInDownBig¶fadeInLeft¶fadeInLeftBig¶fadeInRight¶fadeInRightBig¶fadeInUp¶fadeInUpBig¶flipInX¶flipInY¶rollIn¶zoomIn¶zoomInDown¶zoomInLeft¶zoomInRight¶zoomInUp¶slideInDown¶slideInLeft¶slideInRight¶slideInUp|PROPEND%';
+        var _animHide = '%PROPSTART|id=animHide|group=Общие|type=enum|caption=Анимация исчезновения|default=bounceOutRight|variants=bounce¶flash¶pulse¶rubberBand¶shake¶swing¶tada¶wobble¶jello¶bounceOut¶bounceOutDown¶bounceOutLeft¶bounceOutRight¶bounceOutUp¶fadeOut¶fadeOutDown¶fadeOutDownBig¶fadeOutLeft¶fadeOutLeftBig¶fadeOutRight¶fadeOutRightBig¶fadeOutUp¶fadeOutUpBig¶flipOutX¶flipOutY¶lightSpeedOut¶rotateOut¶rotateOutDownLeft¶rotateOutDownRight¶rotateOutUpLeft¶rotateOutUpRight¶hinge¶rollOut¶zoomOut¶zoomOutDown¶zoomOutLeft¶zoomOutRight¶zoomOutUp¶slideOutDown¶slideOutLeft¶slideOutRight¶slideOutUp|PROPEND%';
+
+        var _rootChat = "/tworat/chat/";
+        var _rootAsset = "/tworat/";
+        var _maxMessages = %PROPSTART|id=maxMessages|type=enum|group=Общие|caption=Максимум сообщений|variants=5¦5¶10¦10¶20¦20¶50¦50¶100¦100|default=20|PROPEND%;
+    </script>
+    <script src="/tworat/js/shared.js"></script>
+    <script src="/tworat/js/chat.js"></script>
+
+<style type="text/css">
+::-webkit-scrollbar {
+	visibility: hidden;
+}
+html, body {
+    background-color: rgba(255,255,255,0.0);
+    opacity: 0.99;
+    padding: 0 0 0 0;
+    margin: 0 0 0 0;
+    font-size: 20;
+}
+#root{
+	/*margin: -50px 30px 0px 0px;*/
+    height: 100%;
+    overflow:hidden;
+    z-index:-1; /* Remove this line if it's not going to be a background! */
+    /*-webkit-transform: rotateY(-10deg);*/
+}
+
+#back3d{
+    padding: 0px;
+   /*-webkit-perspective: 400px; */
+}
+
+/*Контейнер чата*/
+.container{
+	overflow: hidden;
+	position: fixed;
+	width: 90%;
+}
+
+.message_badge{
+	margin-right: 1px;
+	width: 16px;
+	height: 16px;
+}
+
+.message_link{
+}
+
+.imgfromurl{
+}
+
+a{
+	color:%PROPSTART|id=sexTssem|type=color|group=Общие|caption=Цвет ссылок|default=#00ee00|PROPEND%;
+}
+
+/*//////////////////////// Сообщение системное //////////////////////////////*/
+
+.messagesys .name{
+    display: inline-block;
+    position: relative;
+	%PROPSTART|group=Сообщение системное|id=mesnamefont3|type=font|caption=Шрифт имени|default=Arial|PROPEND% 
+    %PROPSTART|id=mesnamesty3|group=Сообщение системное|type=enum|caption=Стиль шрифта имени|variants=Обычный¦¶Жирный¦font-weight: bold;¶Наклонный¦font-style: italic;¶Жирный наклонный¦font-weight: bold;font-style: italic;|PROPEND%
+    color: %PROPSTART|id=mesnamecol3|group=Сообщение системное|type=color|caption=Цвет имени|default=#55FF77|PROPEND%;
+    margin-right: 5px;
+}
+
+.messagesys .text{
+    position: relative;
+	%PROPSTART|group=Сообщение системное|id=mestextfont3|type=font|caption=Шрифт текста|default=Arial|PROPEND% 
+    %PROPSTART|id=mestextfsty3|group=Сообщение системное|type=enum|caption=Стиль шрифта текста|variants=Обычный¦¶Жирный¦font-weight: bold;¶Наклонный¦font-style: italic;¶Жирный наклонный¦font-weight: bold;font-style: italic;|PROPEND%
+    color: %PROPSTART|id=mestextfcol3|group=Сообщение системное|type=color|caption=Цвет текста|default=#55FF77|PROPEND%;
+}
+
+.messagesys{
+	height: auto;
+	background-color: %PROPSTART|group=Сообщение системное|id=mesback3|type=color|mode=2|caption=Цвет фона|default=#88ffffff|PROPEND%;
+%PROPSTART|id=messhadow3|type=enum|group=Сообщение системное|caption=Тень текста сообщения|variants=Черная тень¦text-shadow: 0 1px 1px black;¶Белая тень¦text-shadow: 0 1px 1px white;¶Нету тени¦|PROPEND%
+%PROPSTART|id=mestop3|type=enum|group=Сообщение системное|caption=Отступ|variants=2px¦margin-top: 2px;¶1px¦margin-top: 1px;¶Нету¦|PROPEND%
+%PROPSTART|group=Сообщение системное|id=mesimage3|type=back|caption=Фоновая картинка|PROPEND%
+}
+
+/*//////////////////////// Сообщение выделенное //////////////////////////////*/
+
+.messagetm .name{
+    display: inline-block;
+    position: relative;
+	%PROPSTART|group=Сообщение выделенное|id=mesnamefont2|type=font|caption=Шрифт имени|default=Arial|PROPEND% 
+    %PROPSTART|id=mesnamesty2|group=Сообщение выделенное|type=enum|caption=Стиль шрифта имени|variants=Обычный¦¶Жирный¦font-weight: bold;¶Наклонный¦font-style: italic;¶Жирный наклонный¦font-weight: bold;font-style: italic;|PROPEND%
+    color: %PROPSTART|id=mesnamecol2|group=Сообщение выделенное|type=color|caption=Цвет имени|default=#55FF77|PROPEND%;
+    margin-right: 5px;
+}
+
+.messagetm .text{
+    position: relative;
+	%PROPSTART|group=Сообщение выделенное|id=mestextfont2|type=font|caption=Шрифт текста|default=Arial|PROPEND% 
+    %PROPSTART|id=mestextfsty2|group=Сообщение выделенное|type=enum|caption=Стиль шрифта текста|variants=Обычный¦¶Жирный¦font-weight: bold;¶Наклонный¦font-style: italic;¶Жирный наклонный¦font-weight: bold;font-style: italic;|PROPEND%
+    color: %PROPSTART|id=mestextfcol2|group=Сообщение выделенное|type=color|caption=Цвет текста|default=#55FF77|PROPEND%;
+}
+
+.messagetm{
+	height: auto;
+	background-color: %PROPSTART|group=Сообщение выделенное|id=mesback2|type=color|mode=2|caption=Цвет фона|default=#88ffffff|PROPEND%;
+%PROPSTART|id=messhadow2|type=enum|group=Сообщение выделенное|caption=Тень текста сообщения|variants=Черная тень¦text-shadow: 0 1px 1px black;¶Белая тень¦text-shadow: 0 1px 1px white;¶Нету тени¦|PROPEND%
+%PROPSTART|id=mestop2|type=enum|group=Сообщение выделенное|caption=Отступ|variants=2px¦margin-top: 2px;¶1px¦margin-top: 1px;¶Нету¦|PROPEND%
+%PROPSTART|group=Сообщение выделенное|id=mesimage2|type=back|caption=Фоновая картинка|PROPEND%
+}
+
+
+
+
+/*//////////////////////// Сообщение обычное //////////////////////////////*/
+
+
+.message .name{
+    display: inline-block;
+    position: relative;
+	%PROPSTART|group=Сообщение обычное|id=mesnamefont|type=font|caption=Шрифт имени|default=Arial|PROPEND% 
+    %PROPSTART|id=mesnamesty|group=Сообщение обычное|type=enum|caption=Стиль шрифта имени|variants=Обычный¦¶Жирный¦font-weight: bold;¶Наклонный¦font-style: italic;¶Жирный наклонный¦font-weight: bold;font-style: italic;|PROPEND%
+    color: %PROPSTART|id=mesnamecol|group=Сообщение обычное|type=color|caption=Цвет имени|default=#556677|PROPEND%;
+    margin-right: 5px;
+}
+
+.message .text{
+    position: relative;
+	%PROPSTART|group=Сообщение обычное|id=mestextfont|type=font|caption=Шрифт текста|default=Arial|PROPEND% 
+    %PROPSTART|id=mestextfsty|group=Сообщение обычное|type=enum|caption=Стиль шрифта текста|variants=Обычный¦¶Жирный¦font-weight: bold;¶Наклонный¦font-style: italic;¶Жирный наклонный¦font-weight: bold;font-style: italic;|PROPEND%
+    color: %PROPSTART|id=mestextfcol|group=Сообщение обычное|type=color|caption=Цвет текста|default=#556677|PROPEND%;
+}
+
+.message{
+	height: auto;
+	background-color: %PROPSTART|group=Сообщение обычное|id=mesback|type=color|mode=2|caption=Цвет фона|default=#88ffffff|PROPEND%;
+%PROPSTART|id=messhadow|type=enum|group=Сообщение обычное|caption=Тень текста сообщения|variants=Черная тень¦text-shadow: 0 1px 1px black;¶Белая тень¦text-shadow: 0 1px 1px white;¶Нету тени¦|PROPEND%
+%PROPSTART|id=mestop|type=enum|group=Сообщение обычное|caption=Отступ|variants=2px¦margin-top: 2px;¶1px¦margin-top: 1px;¶Нету¦|PROPEND%
+%PROPSTART|group=Сообщение обычное|id=mesimage|type=back|caption=Фоновая картинка|PROPEND%
+}
+
+
+
+
+
+
+
+
+
+
+
+
+</style>
+</head>
+<body onload="onStart();">
+<div id="back3d">
+<div id="root">
+    <div style="height:2000px" />
+</div></div>
+</body>
+</html>

@@ -1,0 +1,835 @@
+﻿<Window x:Class="TwoRatChat.Main.Dialogs.OptionsDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:loc="clr-namespace:TwoRatChat.Main.Properties" WindowStartupLocation="CenterScreen"
+        xmlns:conv="clr-namespace:TwoRatChat.Main.Converters"
+        xmlns:cmd="clr-namespace:TwoRatChat.Commands;assembly=TwoRatChat.Commands"
+        Topmost="{Binding Source={x:Static loc:Settings.Default}, Path=Window_TopMost, Mode=OneWay}"
+        Height="608.12" Icon="../TwoRatChat.ico"
+        Title="{x:Static loc:Resources.MES_Options}"
+        Width="880"
+        MinHeight="350" MinWidth="880">
+    <Window.Resources>
+        <conv:BoolToThicknesConverter x:Key="b2tc" />
+        <conv:BrandConverter x:Key="bc" />
+        <conv:ColorToUIntConverter x:Key="c2i" />
+        <conv:IntToBoolConveter x:Key="i2b" />
+
+        <LinearGradientBrush x:Key="constructBrush" StartPoint="0,0" EndPoint="4,4" SpreadMethod="Repeat" MappingMode="Absolute">
+            <GradientStop Offset="0.0" Color="#88ffa500" />
+            <GradientStop Offset="0.5" Color="#88ffa500" />
+            <GradientStop Offset="0.5" Color="#88000000" />
+            <GradientStop Offset="1.0" Color="#88000000" />
+        </LinearGradientBrush>
+
+        <!--<TabItem.Header>
+            <Label Content="" Margin="0" Padding="0">
+                <Label.Background>
+                    
+                </Label.Background>
+            </Label>
+        </TabItem.Header>-->
+
+        <!--<DataTemplate >
+            <Border x:Name="grid" Background="Red" Margin="0" Padding="0">
+                <ContentPresenter>
+                    <ContentPresenter.Content>
+                        <TextBlock FontSize="15" Text="{TemplateBinding Content}"/>
+                    </ContentPresenter.Content>
+                </ContentPresenter>
+            </Border>
+            <DataTemplate.Triggers>
+                <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type TabItem}},Path=IsSelected}" Value="True">
+                    <Setter TargetName="grid" Property="Background" Value="Green"/>
+                </DataTrigger>
+            </DataTemplate.Triggers>
+        </DataTemplate>-->
+
+        <Style TargetType="{x:Type TabItem}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TabItem}">
+                        <Grid>
+                            <Border Name="Border" Margin="0,0,2,0" BorderThickness="1,1,1,0" 
+                                    BorderBrush="Silver" Background="Silver" >
+                                <ContentPresenter x:Name="ContentSite" VerticalAlignment="Center"
+                                                  HorizontalAlignment="Center"
+                                                  ContentSource="Header" Margin="12,2,12,2"
+                                                  RecognizesAccessKey="True">
+                                </ContentPresenter>
+                            </Border>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Panel.ZIndex" Value="100" />
+                                <Setter TargetName="Border" Property="Background" Value="White" />
+                                <Setter TargetName="Border" Property="BorderThickness" Value="1,1,1,0" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="Border" Property="Background" Value="DarkRed" />
+                                <Setter TargetName="Border" Property="BorderBrush" Value="Black" />
+                                <Setter Property="Foreground" Value="DarkGray" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="UnderConstruction" TargetType="{x:Type TabItem}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TabItem}">
+                        <Grid>
+                            <Border Name="Border" Margin="0,0,2,-1" BorderThickness="1,1,1,0" BorderBrush="Silver" Background="Silver" >
+                                <ContentPresenter x:Name="ContentSite" VerticalAlignment="Center"
+                                                  HorizontalAlignment="Center"
+                                                  ContentSource="Header" Margin="12,2,12,2"
+                                                  RecognizesAccessKey="True">
+                                </ContentPresenter>
+                            </Border>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Panel.ZIndex" Value="100" />
+                                <Setter TargetName="Border" Property="Background" Value="{StaticResource constructBrush}" />
+                                <Setter TargetName="Border" Property="BorderThickness" Value="1,1,1,0" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="Border" Property="Background" Value="DarkRed" />
+                                <Setter TargetName="Border" Property="BorderBrush" Value="Black" />
+                                <Setter Property="Foreground" Value="DarkGray" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </Window.Resources>
+    <TabControl>
+        <TabControl.Resources>
+            <Style TargetType="{x:Type TextBlock}">
+                <Setter Property="HorizontalAlignment" Value="Right" />
+                <Setter Property="Margin" Value="1" />
+                <Setter Property="VerticalAlignment" Value="Center" />
+            </Style>
+        </TabControl.Resources>
+        <TabItem Header="{x:Static loc:Resources.TAB_Main}">
+            <StackPanel Orientation="Vertical">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition/>
+                        <ColumnDefinition  />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="{x:Static loc:Resources.OPT_Skin}" />
+                    <ComboBox x:Name="Skins" Text="{Binding Chat_RootSkin, Mode=TwoWay, Source={x:Static loc:Settings.Default}}" 
+                              Grid.Column="1" Margin="1,0" VerticalAlignment="Center" />
+                    <Button Content="{x:Static loc:Resources.BUT_ApplySkin}" FontFamily="Calibri" 
+                        Grid.Column="2" Margin="10,0" Click="ApplySkin_Click" />
+                </Grid>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="{x:Static loc:Resources.OPT_OverlayMode}" />
+                    <CheckBox 
+                        Content="{x:Static loc:Resources.OPT_OverlayMode2}"
+                        IsChecked="{Binding Path=Window_OverlayMode, Mode=TwoWay, Source={x:Static loc:Settings.Default}}" Grid.Column="1" VerticalAlignment="Center" />
+                </Grid>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="{x:Static loc:Resources.OPT_TopMost}" />
+                    <CheckBox IsChecked="{Binding Window_TopMost, Mode=TwoWay, Source={x:Static loc:Settings.Default}}" Grid.Column="1" VerticalAlignment="Center" />
+                </Grid>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="{x:Static loc:Resources.OPT_ShowInTaskbar}" />
+                    <CheckBox IsChecked="{Binding ShowInTaskbar, Mode=TwoWay, Source={x:Static loc:Settings.Default}}" Grid.Column="1" VerticalAlignment="Center" />
+                </Grid>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="{x:Static loc:Resources.OPT_Border}" />
+                    <CheckBox IsChecked="{Binding Window_Border, Mode=TwoWay, Source={x:Static loc:Settings.Default}}" Grid.Column="1" VerticalAlignment="Center" />
+                </Grid>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="{x:Static loc:Resources.OPT_MouseTransparent}" />
+                    <CheckBox IsChecked="{Binding Window_MouseTransparent, Mode=TwoWay, Source={x:Static loc:Settings.Default}}" Grid.Column="1" VerticalAlignment="Center" />
+                </Grid>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="{x:Static loc:Resources.OPT_DisableFullDrag}" />
+                    <CheckBox IsChecked="{Binding Window_DisableFullDrag, Mode=TwoWay, Source={x:Static loc:Settings.Default}}" Grid.Column="1" VerticalAlignment="Center" />
+                </Grid>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="{x:Static loc:Resources.OPT_AccentColor}" />
+
+                    <Rectangle Grid.Column="1" Width="32" HorizontalAlignment="Left" 
+                               MouseLeftButtonDown="Rectangle_MouseLeftButtonDown"
+                               Margin="1" Stroke="Black" StrokeThickness="1">
+                        <Rectangle.Fill>
+                            <SolidColorBrush Color="{Binding Window_AccentColor, Mode=OneWay, Converter={StaticResource c2i}, Source={x:Static loc:Settings.Default}}" />
+                        </Rectangle.Fill>
+                    </Rectangle>
+                </Grid>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="{x:Static loc:Resources.OPT_BackColor}" />
+
+                    <Rectangle Grid.Column="1" Width="32" HorizontalAlignment="Left" 
+                                MouseLeftButtonDown="Rectangle_MouseLeftButtonDown2"
+                               Margin="1" Stroke="Black" StrokeThickness="1">
+                        <Rectangle.Fill>
+                            <SolidColorBrush Color="{Binding Window_BackgroundColor, Mode=OneWay, Converter={StaticResource c2i}, Source={x:Static loc:Settings.Default}}" />
+                        </Rectangle.Fill>
+                    </Rectangle>
+                </Grid>
+
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition/>
+                        <ColumnDefinition  />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="{x:Static loc:Resources.OPT_ImagePath}" />
+                    <TextBox Text="{Binding Chat_ImagePath, Mode=TwoWay, Source={x:Static loc:Settings.Default}}" 
+                             Grid.Column="1" Margin="1,0" VerticalAlignment="Center" />
+                    <Button Content="..."  FontFamily="Calibri"
+                        Grid.Column="2" Margin="10,0" Click="SelectFileName_Click" />
+                </Grid>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="1*" />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="{x:Static loc:Resources.MES_HttpListen}" />
+                    <TextBox Text="{Binding HTTP_ListenUri, Mode=TwoWay, Source={x:Static loc:Settings.Default}}" 
+                             IsReadOnly="True"
+                             Grid.Column="1" Margin="1,0" VerticalAlignment="Center" />
+
+                    <CheckBox Grid.Column="2" Content="{x:Static loc:Resources.MES_HttpEnable}"
+                              Foreground="Black"
+                              Margin="10,0" IsChecked="{Binding HTTP_Enable, Mode=TwoWay, Source={x:Static loc:Settings.Default}}" VerticalAlignment="Center" />
+
+                    <Button Content="..."  FontFamily="Calibri"
+                        Grid.Column="3" Margin="10,0" Click="EditHttpUri_Click" />
+                </Grid>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="{x:Static loc:Resources.OPT_FollowersInChat}" />
+                    <CheckBox IsChecked="{Binding newFollowerShowInChat, Mode=TwoWay, Source={x:Static loc:Settings.Default}}" Grid.Column="1" VerticalAlignment="Center" />
+                </Grid>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="{x:Static loc:Resources.OPT_AllowLeveling}" />
+                    <CheckBox IsChecked="{Binding allowLeveling, Mode=TwoWay, Source={x:Static loc:Settings.Default}}" Grid.Column="1" VerticalAlignment="Center" />
+                </Grid>
+
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="{x:Static loc:Resources.OPT_DowloadHistory}" />
+                    <CheckBox IsChecked="{Binding Chat_LoadHistory, Mode=TwoWay, Source={x:Static loc:Settings.Default}}" Grid.Column="1" VerticalAlignment="Center" />
+                </Grid>
+
+                <!--<Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition/>
+                        <ColumnDefinition  />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="{x:Static loc:Resources.OPT_PlaySoundOnFirstMessage}" />
+                    <ComboBox 
+                        ItemsSource="{Binding Source={x:Static cmd:CommandFactory.Ids}}"
+                        SelectedItem="{Binding soundOnMessage, Mode=TwoWay, Source={x:Static loc:Settings.Default}}" 
+                        Grid.Column="1" Margin="1,0" VerticalAlignment="Center" />
+                </Grid>-->
+
+                <Border Background="Black" Height="1" Margin="2" />
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="{x:Static loc:Resources.MES_GGAllowAnimated}" />
+                    <CheckBox IsChecked="{Binding GG_AllowAnimatedSmiles, Mode=TwoWay, Source={x:Static loc:Settings.Default}}" Grid.Column="1" VerticalAlignment="Center" />
+                </Grid>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="{x:Static loc:Resources.MES_GGAllowChannel}" />
+                    <CheckBox IsChecked="{Binding GG_AllowChannelSmiles, Mode=TwoWay, Source={x:Static loc:Settings.Default}}" Grid.Column="1" VerticalAlignment="Center" />
+                </Grid>
+
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="{x:Static loc:Resources.OPT_GGHeaderMode}" />
+                    <ComboBox x:Name="ggmode"
+                        SelectedValue="{Binding gg_HeaderMode, Mode=TwoWay, Source={x:Static loc:Settings.Default}}" 
+                        SelectedValuePath="id"
+                        Grid.Column="1" Margin="1,0" VerticalAlignment="Center" />
+                </Grid>
+
+
+
+                <Border Background="Black" Height="1" Margin="2" />
+
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="{x:Static loc:Resources.OPT_ShowTwitchSubsIcon}" />
+                    <CheckBox IsChecked="{Binding twitch_ShowSubsIcon, Mode=TwoWay, Source={x:Static loc:Settings.Default}}" Grid.Column="1" VerticalAlignment="Center" />
+                </Grid>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="{x:Static loc:Resources.OPT_UseColors}" />
+                    <CheckBox IsChecked="{Binding twitch_AllowUseColors, Mode=TwoWay, Source={x:Static loc:Settings.Default}}" Grid.Column="1" VerticalAlignment="Center" />
+                </Grid>
+
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="{x:Static loc:Resources.OPT_CheckFollowers}" />
+                    <CheckBox IsChecked="{Binding twitch_Followers, Mode=TwoWay, Source={x:Static loc:Settings.Default}}" Grid.Column="1" VerticalAlignment="Center" />
+                </Grid>
+
+                <Border Background="Black" Height="1" Margin="2" />
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="{x:Static loc:Resources.OPT_YoutubeIcon}" />
+                    <CheckBox IsChecked="{Binding youtube_ShowIcons, Mode=TwoWay, Source={x:Static loc:Settings.Default}}" Grid.Column="1" VerticalAlignment="Center" />
+                </Grid>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="{x:Static loc:Resources.OPT_YoutubeAPIKey}" />
+                    <TextBox Text="{Binding youTubeAPIKey, Mode=TwoWay, Source={x:Static loc:Settings.Default}}" Grid.Column="1" VerticalAlignment="Center" />
+                </Grid>
+
+
+                <Border Background="Black" Height="1" Margin="2" />
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="{x:Static loc:Resources.OPT_AllowHitboxColors}" />
+                    <CheckBox IsChecked="{Binding hitbox_AllowUserColors, Mode=TwoWay, Source={x:Static loc:Settings.Default}}" Grid.Column="1" VerticalAlignment="Center" />
+                </Grid>
+
+                <Border Background="Black" Height="1" Margin="2" />
+
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="{x:Static loc:Resources.OPT_ShowImagesFrom}" />
+
+                    <ComboBox x:Name="imagemode"
+                        SelectedValue="{Binding showImageMode, Mode=TwoWay, Source={x:Static loc:Settings.Default}}" 
+                        SelectedValuePath="id"
+                        Grid.Column="1" Margin="1,0" VerticalAlignment="Center" />
+                </Grid>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*" />
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="{x:Static loc:Resources.OPT_MaxImageSize}" 
+                               Grid.Column="0" />
+                    <TextBox Text="{Binding maxImageWidth, Mode=TwoWay, Source={x:Static loc:Settings.Default}}"
+                             Grid.Column="1" Margin="1" 
+                             IsEnabled="{Binding Path=showImageMode, Converter={StaticResource i2b}, ConverterParameter=0, Mode=OneWay, Source={x:Static loc:Settings.Default}}" />
+                    <TextBox Text="{Binding maxImageHeight, Mode=TwoWay, Source={x:Static loc:Settings.Default}}"
+                             Grid.Column="2" Margin="1" 
+                             IsEnabled="{Binding Path=showImageMode, Converter={StaticResource i2b}, ConverterParameter=0, Mode=OneWay, Source={x:Static loc:Settings.Default}}" />
+                    <TextBlock Text="px" Grid.Column="3" TextAlignment="Left" HorizontalAlignment="Left" />
+
+                    <Button Grid.Column="4" Content="White list..." Margin="1" Click="ButtonWL_Click" />
+                    <Button Grid.Column="5" Content="Black list..." Margin="1" Click="ButtonBL_Click" />
+                </Grid>
+
+            </StackPanel>
+        </TabItem>
+
+        <TabItem Style="{StaticResource UnderConstruction}" Header="{x:Static loc:Resources.TAB_Awards}">
+
+
+            <StackPanel Orientation="Vertical">
+                <Button Content="+" Width="50" HorizontalAlignment="Left" Margin="2" />
+                <ListBox Margin="2">
+
+                </ListBox>
+            </StackPanel>
+        </TabItem>
+
+        <TabItem Style="{StaticResource UnderConstruction}" Header="{x:Static loc:Resources.TAB_Bot}">
+            <StackPanel>
+                <StackPanel.Resources>
+                    <Style TargetType="{x:Type Grid}">
+                        <Setter Property="Margin" Value="1" />
+                    </Style>
+
+                    <Style x:Key="label" TargetType="{x:Type TextBlock}">
+                        <Setter Property="Foreground" Value="#ff666666" />
+                        <Setter Property="VerticalAlignment" Value="Center" />
+                        <Setter Property="HorizontalAlignment" Value="Right" />
+                        <Setter Property="Margin" Value="1" />
+                    </Style>
+                </StackPanel.Resources>
+
+                <TextBlock Foreground="#ffff3030" Text="{x:Static loc:Resources.MES_BotWarning}"
+                           HorizontalAlignment="Center" FontSize="16" TextAlignment="Center"
+                           TextWrapping="Wrap"
+                           />
+
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="http://goodgame.ru/ chat login:" Style="{StaticResource label}" />
+                    <TextBox Grid.Column="1" IsEnabled="False"
+                             Text="{Binding bot_GGLogin, Mode=TwoWay, Source={x:Static loc:Settings.Default}}" />
+                </Grid>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="http://goodgame.ru/ chat pass:" Style="{StaticResource label}" />
+                    <PasswordBox x:Name="bot_GGPass" Grid.Column="1"  IsEnabled="False" />
+
+                </Grid>
+
+                <Separator />
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="http://twitch.tv/ chat login:" Style="{StaticResource label}" />
+                    <TextBox Grid.Column="1"  IsEnabled="False"
+                             Text="{Binding bot_TwitchLogin, Mode=TwoWay, Source={x:Static loc:Settings.Default}}" />
+                </Grid>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="http://twitch.tv/ chat pass:" Style="{StaticResource label}" />
+                    <PasswordBox x:Name="bot_TwitchPass" Grid.Column="1"  IsEnabled="False"/>
+
+                </Grid>
+            </StackPanel>
+        </TabItem>
+
+        <TabItem Header="{x:Static loc:Resources.TAB_Urls}">
+            <StackPanel>
+                <StackPanel.Resources>
+                    <Style TargetType="{x:Type Grid}">
+                        <Setter Property="Margin" Value="1" />
+                    </Style>
+
+                    <Style x:Key="label" TargetType="{x:Type TextBlock}">
+                        <Setter Property="Foreground" Value="#ff666666" />
+                        <Setter Property="VerticalAlignment" Value="Center" />
+                        <Setter Property="HorizontalAlignment" Value="Right" />
+                        <Setter Property="Margin" Value="1" />
+                    </Style>
+                </StackPanel.Resources>
+
+                <TextBlock Foreground="#ffff3030" Text="{x:Static loc:Resources.MES_UrlWarning}"
+                           HorizontalAlignment="Center" FontSize="16" TextAlignment="Center"
+                           TextWrapping="Wrap"
+                           />
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="http://goodgame.ru/ chat URL:" Style="{StaticResource label}" />
+                    <TextBox Grid.Column="1" Text="{Binding url_Goodgame, Mode=TwoWay, Source={x:Static loc:Settings.Default}}" />
+                </Grid>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="http://www.twitch.tv/ chat IRC server:" Style="{StaticResource label}" />
+                    <TextBox Grid.Column="1" Text="{Binding url_Twitch, Mode=TwoWay, Source={x:Static loc:Settings.Default}}" />
+                </Grid>
+
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="http://cybergame.tv/ chat URL:" Style="{StaticResource label}" />
+                    <TextBox Grid.Column="1" Text="{Binding url_Cybergame, Mode=TwoWay, Source={x:Static loc:Settings.Default}}" />
+                </Grid>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="http://sc2tv.ru/ chat URL:" Style="{StaticResource label}" />
+                    <TextBox Grid.Column="1" Text="{Binding url_Sc2tv, Mode=TwoWay, Source={x:Static loc:Settings.Default}}" />
+                </Grid>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="http://www.empiretv.org/ chat URL:" Style="{StaticResource label}" />
+                    <TextBox Grid.Column="1" Text="{Binding url_Empire, Mode=TwoWay, Source={x:Static loc:Settings.Default}}" />
+                </Grid>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="http://www.goha.tv/ chat IRC server:" Style="{StaticResource label}" />
+                    <TextBox Grid.Column="1" Text="{Binding url_GohaTV, Mode=TwoWay, Source={x:Static loc:Settings.Default}}" />
+                </Grid>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="http://midlane.ru/ chat JABBER server:" Style="{StaticResource label}" />
+                    <TextBox Grid.Column="1" Text="{Binding url_midlane, Mode=TwoWay, Source={x:Static loc:Settings.Default}}" />
+                </Grid>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="http://gamerstv.ru/ chat URL:" Style="{StaticResource label}" />
+                    <TextBox Grid.Column="1" Text="{Binding url_GamersTV, Mode=TwoWay, Source={x:Static loc:Settings.Default}}" />
+                </Grid>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="http://streamcube.tv/ chat URL:" Style="{StaticResource label}" />
+                    <TextBox Grid.Column="1" Text="{Binding url_StreamCube, Mode=TwoWay, Source={x:Static loc:Settings.Default}}" />
+                </Grid>
+            </StackPanel>
+        </TabItem>
+
+        <TabItem Header="{x:Static loc:Resources.TAB_Voice}">
+            <StackPanel Orientation="Vertical">
+
+
+                <Grid Margin="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition/>
+                        <ColumnDefinition  />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="{x:Static loc:Resources.OPT_voice_FirstMeet}" />
+                    <TextBox Text="{Binding voice_FirstMeet, Mode=TwoWay, Source={x:Static loc:Settings.Default}}" 
+                             Grid.Column="1" Margin="1,0" VerticalAlignment="Center" />
+                </Grid>
+
+
+                <Grid Margin="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition/>
+                        <ColumnDefinition  />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="{x:Static loc:Resources.OPT_voice_Promoute}" />
+                    <TextBox Text="{Binding voice_Promoute, Mode=TwoWay, Source={x:Static loc:Settings.Default}}" 
+                             Grid.Column="1" Margin="1,0" VerticalAlignment="Center" />
+                </Grid>
+
+
+                <Grid Margin="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition/>
+                        <ColumnDefinition  />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="{x:Static loc:Resources.OPT_voice_Followers}" />
+                    <TextBox Text="{Binding voice_Followers, Mode=TwoWay, Source={x:Static loc:Settings.Default}}" 
+                             Grid.Column="1" Margin="1,0" VerticalAlignment="Center" />
+                </Grid>
+
+
+                <Grid Margin="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition/>
+                        <ColumnDefinition  />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="Voice:" />
+                    <ComboBox x:Name="voices"
+                        SelectedValue="{Binding voice_voiceId, Mode=TwoWay, Source={x:Static loc:Settings.Default}}" 
+                            
+                        Grid.Column="1" Margin="1,0" VerticalAlignment="Center" >
+                        
+                    </ComboBox>
+                </Grid>
+
+
+                <Grid Margin="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition/>
+                        <ColumnDefinition  />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="{x:Static loc:Resources.OPT_voice_ask}" />
+                    <TextBox Text="{Binding voice_ask, Mode=TwoWay, Source={x:Static loc:Settings.Default}}" 
+                             Grid.Column="1" Margin="1,0" VerticalAlignment="Center" />
+                </Grid>
+
+                <Grid Margin="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition/>
+                        <ColumnDefinition  />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="{x:Static loc:Resources.OPT_voice_caps}" />
+                    <TextBox Text="{Binding voice_caps, Mode=TwoWay, Source={x:Static loc:Settings.Default}}" 
+                             Grid.Column="1" Margin="1,0" VerticalAlignment="Center" />
+                </Grid>
+
+                <Grid Margin="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition/>
+                        <ColumnDefinition  />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="{x:Static loc:Resources.OPT_voice_talk}" />
+                    <TextBox Text="{Binding voice_talk, Mode=TwoWay, Source={x:Static loc:Settings.Default}}" 
+                             Grid.Column="1" Margin="1,0" VerticalAlignment="Center" />
+                </Grid>
+
+                <Grid Margin="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition/>
+                        <ColumnDefinition  />
+                    </Grid.ColumnDefinitions>
+                </Grid>
+            </StackPanel>
+        </TabItem>
+
+        <TabItem Header="{x:Static loc:Resources.TAB_About}">
+            <StackPanel Width="700">
+                <StackPanel.Resources>
+                    <Style TargetType="{x:Type TextBlock}">
+                        <Setter Property="Width" Value="220" />
+                        <Setter Property="TextAlignment" Value="Right" />
+                        <Setter Property="HorizontalAlignment" Value="Right" />
+                        <Setter Property="VerticalAlignment" Value="Center" />
+                        <Setter Property="Margin" Value="2" />
+                    </Style>
+
+                    <Style TargetType="{x:Type TextBox}">
+                        <Setter Property="Width" Value="300" />
+                        <Setter Property="Margin" Value="2" />
+                        <Setter Property="IsReadOnly" Value="True" />
+                    </Style>
+                </StackPanel.Resources>
+
+                <StackPanel Orientation="Horizontal" Margin="2">
+                    <TextBlock x:Name="about" Text="TwoRatChat by Oxlamon." FontSize="20"
+                               HorizontalAlignment="Center" TextAlignment="Center"
+                               FontWeight="Bold" Width="700" />
+                </StackPanel>
+
+
+                <StackPanel Orientation="Horizontal" Margin="2">
+                    <TextBlock Text="Yandex-money: " />
+                    <TextBox Text="41001760446685" />
+                </StackPanel>
+
+
+                <StackPanel Orientation="Horizontal" Margin="2">
+                    <TextBlock Text="Thank you for using and donation." FontSize="20"
+                               HorizontalAlignment="Center" TextAlignment="Center"
+                               FontWeight="Bold" Width="700" />
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="2">
+                    <TextBlock Text="E-mail: " />
+                    <TextBox Text="JustOxlamon+TwoRatChat@gmail.com" />
+                </StackPanel>
+                
+                <TextBlock Text="Special thanks to:" FontSize="20"
+                               HorizontalAlignment="Center" TextAlignment="Center"
+                               FontWeight="Bold" />
+                <TextBlock Text="Silent Fly - main application icon" FontSize="14"
+                               HorizontalAlignment="Center" TextAlignment="Center"
+                              />
+            </StackPanel>
+        </TabItem>
+
+    
+    </TabControl>
+</Window>

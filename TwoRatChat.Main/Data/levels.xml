@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<levels>
+  <level exp="0" name="bronze" icon="img/levels/30px-BronzeMedium.png" />
+  <level exp="10" name="silver" icon="img/levels/30px-SilverMedium.png" />
+  <level exp="100" name="gold" icon="img/levels/30px-GoldMedium.png" />
+  <level exp="1000" name="platinum" icon="img/levels/30px-PlatinumMedium.png" />
+  <level exp="10000" name="diamond" icon="img/levels/30px-DiamondMedium.png" />
+   <level exp="100000" name="master" icon="img/levels/30px-MasterMedium.png" />
+    <level exp="1000000" name="grandmaster" icon="img/levels/30px-GrandmasterMedium.png" />
+</levels>

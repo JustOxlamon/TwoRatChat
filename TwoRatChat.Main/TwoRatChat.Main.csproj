@@ -1,0 +1,697 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{48E4B378-AFF7-454F-841F-A970346CBDDC}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TwoRatChat.Main</RootNamespace>
+    <AssemblyName>TwoRatChat.Main</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PrimaryVersionType>
+    </PrimaryVersionType>
+    <UpdateAssemblyVersion>True</UpdateAssemblyVersion>
+    <UpdateAssemblyFileVersion>True</UpdateAssemblyFileVersion>
+    <UpdateAssemblyInfoVersion>True</UpdateAssemblyInfoVersion>
+    <AssemblyVersionSettings>None.IncrementOnDemand.DayOfYearStamp.TimeStamp</AssemblyVersionSettings>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <AssemblyInfoFilePath>Properties\AssemblyInfo.cs</AssemblyInfoFilePath>
+    <AssemblyFileVersionSettings>None.IncrementOnDemand.DayOfYearStamp.DateStamp</AssemblyFileVersionSettings>
+    <AssemblyInfoVersionSettings>None.IncrementOnDemand.DayOfYearStamp.TimeStamp</AssemblyInfoVersionSettings>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;ANTIKRIZIS</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;ANTIKRIZIS</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PrimaryVersionType>AssemblyInfoVersionAttribute</PrimaryVersionType>
+    <UpdateAssemblyVersion>False</UpdateAssemblyVersion>
+    <UpdateAssemblyFileVersion>False</UpdateAssemblyFileVersion>
+    <UpdateAssemblyInfoVersion>True</UpdateAssemblyInfoVersion>
+    <AssemblyVersionSettings>
+    </AssemblyVersionSettings>
+    <AssemblyFileVersionSettings>
+    </AssemblyFileVersionSettings>
+    <AssemblyInfoFilePath>Properties\AssemblyInfo.cs</AssemblyInfoFilePath>
+    <AssemblyInfoVersionSettings>None.IncrementOnDemand.DayOfYearStamp.TimeStamp</AssemblyInfoVersionSettings>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>TwoRatChat.Main.App</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>TwoRatChat.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Awesomium.Core, Version=1.7.5.1, Culture=neutral, PublicKeyToken=e1a0d7c8071a5214, processorArchitecture=x86" />
+    <Reference Include="Awesomium.Windows.Controls, Version=1.7.5.1, Culture=neutral, PublicKeyToken=7a34e179b8b61c39, processorArchitecture=x86" />
+    <Reference Include="EngineIoClientDotNet, Version=0.9.22.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\EngineIoClientDotNet.0.9.22\lib\net45\EngineIoClientDotNet.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NHotkey">
+      <HintPath>..\Dependencies\NHotkey.dll</HintPath>
+    </Reference>
+    <Reference Include="NHotkey.Wpf">
+      <HintPath>..\Dependencies\NHotkey.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Controls.DataVisualization.Toolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\WPF Toolkit\v3.5.50211.1\System.Windows.Controls.DataVisualization.Toolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WebSocket4Net, Version=0.14.1.0, Culture=neutral, PublicKeyToken=eb4e154b696bf72a, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebSocket4Net.0.14.1\lib\net45\WebSocket4Net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Bot\BotSender.cs" />
+    <Compile Include="Bot\GGBot.cs" />
+    <Compile Include="Commands\Actuators\ChatActuator.cs" />
+    <Compile Include="Commands\Reactions\ChatReaction.cs" />
+    <Compile Include="Commands\Reactions\JSCommand.cs" />
+    <Compile Include="Controls\HtmlViewControl.cs" />
+    <Compile Include="Converters\EnumCheckConverter.cs" />
+    <Compile Include="Controls\TaskBarItemOverlay.cs" />
+    <Compile Include="Controls\VSMHelper.cs" />
+    <Compile Include="Converters\BoolToThicknesConverter.cs" />
+    <Compile Include="Converters\BrandConverter.cs" />
+    <Compile Include="Converters\ColorToUIntConverter.cs" />
+    <Compile Include="Converters\FlagConverter.cs" />
+    <Compile Include="Converters\IntToBoolConveter.cs" />
+    <Compile Include="Converters\ToStringConverter.cs" />
+    <Compile Include="Designer\Controls\BackImagePropEditor.xaml.cs">
+      <DependentUpon>BackImagePropEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Designer\Controls\BorderPropEditor.xaml.cs">
+      <DependentUpon>BorderPropEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Designer\Controls\ColorPropEditor.xaml.cs">
+      <DependentUpon>ColorPropEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Designer\Controls\EnumPropEditor.xaml.cs">
+      <DependentUpon>EnumPropEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Designer\Controls\FontPropEditor.xaml.cs">
+      <DependentUpon>FontPropEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Designer\Controls\IntPropEditor.xaml.cs">
+      <DependentUpon>IntPropEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Designer\DesignDocument.cs" />
+    <Compile Include="Designer\PropertyEditor.cs" />
+    <Compile Include="Dialogs\AddSourceDialog.xaml.cs">
+      <DependentUpon>AddSourceDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\BlackListForm.xaml.cs">
+      <DependentUpon>BlackListForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\ColorDialog.xaml.cs">
+      <DependentUpon>ColorDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ColorPicker.xaml.cs">
+      <DependentUpon>ColorPicker.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\CustomUser.xaml.cs">
+      <DependentUpon>CustomUser.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\FortuneWindow.xaml.cs">
+      <DependentUpon>FortuneWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\HelloStreamer.xaml.cs">
+      <DependentUpon>HelloStreamer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\HttpListenEditor.xaml.cs">
+      <DependentUpon>HttpListenEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\ListSkinsDialog.xaml.cs">
+      <DependentUpon>ListSkinsDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\OptionsDialog.xaml.cs">
+      <DependentUpon>OptionsDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\PollingEditorForm.xaml.cs">
+      <DependentUpon>PollingEditorForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\SelectTemplate.xaml.cs">
+      <DependentUpon>SelectTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\SkinDesigner.xaml.cs">
+      <DependentUpon>SkinDesigner.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\VoiceItem.xaml.cs">
+      <DependentUpon>VoiceItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\ActionCommand.cs" />
+    <Compile Include="Helpers\BashQuote.cs" />
+    <Compile Include="Helpers\CookieAwareWebClient.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Helpers\Crc32.cs" />
+    <Compile Include="Helpers\DictionaryHelper.cs" />
+    <Compile Include="Helpers\Errors.cs" />
+    <Compile Include="Helpers\RatDataSource.cs" />
+    <Compile Include="Helpers\Renderer.cs" />
+    <Compile Include="Helpers\TransparentMouse.cs" />
+    <Compile Include="Helpers\WatermarkAdorner.cs" />
+    <Compile Include="Helpers\WatermarkService.cs" />
+    <Compile Include="Model\BlackList.cs" />
+    <Compile Include="Model\Chat.cs" />
+    <Compile Include="Model\ChatArgs.cs" />
+    <Compile Include="Model\Command.cs" />
+    <Compile Include="Model\CustomUserItem.cs" />
+    <Compile Include="Model\FortuneList.cs" />
+    <Compile Include="Model\PersonalData.cs" />
+    <Compile Include="Model\Polling.cs" />
+    <Compile Include="Model\Viewer.cs" />
+    <Compile Include="Properties\Resources.ru-RU.Designer.cs">
+      <DependentUpon>Resources.ru-RU.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Server\HttpServer.cs" />
+    <Compile Include="Server\ThreadWorker.cs" />
+    <Compile Include="Sources\Cybergame_ChatSource.cs" />
+    <Compile Include="Sources\EmpireTV_ChatSource.cs" />
+    <Compile Include="Sources\GamersTV_Source.cs" />
+    <Compile Include="Sources\Gipsyteam_Source.cs" />
+    <Compile Include="Sources\GohaTV_ChatSource.cs" />
+    <Compile Include="Sources\Peka2tv_ChatSource.cs" />
+    <Compile Include="Sources\Goodgame_ChatSource.cs" />
+    <Compile Include="Sources\HitboxTV_ChatSource.cs" />
+    <Compile Include="Sources\Midlane_Source.cs" />
+    <Compile Include="Sources\RealTV_Source.cs" />
+    <Compile Include="Sources\Sc2Tv_ChatSource.cs" />
+    <Compile Include="Sources\SourceManager.cs" />
+    <Compile Include="Sources\StreamCube_ChatSource.cs" />
+    <Compile Include="Sources\Twitch_ChatSource.cs" />
+    <Compile Include="Sources\YoutubeGaming_ChatSource.cs" />
+    <Compile Include="Sources\YoutubeHack_ChatSource.cs" />
+    <Compile Include="Sources\Youtube_ChatSource.cs" />
+    <Compile Include="Talk.xaml.cs">
+      <DependentUpon>Talk.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Designer\Controls\BackImagePropEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Designer\Controls\BorderPropEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Designer\Controls\ColorPropEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Designer\Controls\EnumPropEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Designer\Controls\FontPropEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Designer\Controls\IntPropEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\AddSourceDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\BlackListForm.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\ColorDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\ColorPicker.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\CustomUser.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\FortuneWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\HelloStreamer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\HttpListenEditor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\ListSkinsDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\OptionsDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\PollingEditorForm.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\SelectTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\SkinDesigner.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\VoiceItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Converters\BoolToVisibilityConverter.cs" />
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Styles\SystemControls.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Talk.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Model\ChatCommand.cs" />
+    <Compile Include="Model\ChatMessage.cs" />
+    <Compile Include="Model\ChatSource.cs" />
+    <Compile Include="Model\NotifyPropertyChanged.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.ru-RU.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.ru-RU.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Data\fonts\Anonymous_Pro.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\fonts\Anonymous_Pro_B.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\fonts\Anonymous_Pro_BI.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\fonts\Anonymous_Pro_I.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\FullSizes\Fonts\Dited.otf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\FullSizes\Fonts\major_shift.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\FullSizes\Fonts\Monoton-Regular.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\FullSizes\Fonts\Neon.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\FullSizes\Fonts\NewsCycle-Bold.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\FullSizes\Fonts\NewsCycle-Regular.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\FullSizes\Fonts\RedOctober-Fat.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\FullSizes\Fonts\RedOctober-Regular.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\templates\tworat.trct">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="LICENSE" />
+    <None Include="packages.config" />
+    <None Include="Properties\DataSources\TwoRatChat.Main.Model.CustomUserItem.datasource" />
+    <None Include="Properties\DataSources\TwoRatChat.Main.Model.CustomUsers.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 и x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>Клиентский профиль .NET Framework 3.5 с пакетом обновления 1 %28SP1%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="TwoRatChat.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\goodgame.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\ColorSwatchCircle.png" />
+    <Resource Include="Assets\ColorSwatchSquare1.png" />
+    <Resource Include="Assets\ColorSwatchSquare2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\SDK\JabberNet-2.1.0.710\2005-jabber-net.csproj">
+      <Project>{6cae854a-f202-4d2b-b10e-e8d8e81e5ef5}</Project>
+      <Name>2005-jabber-net</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\dotIRC\dotIRC.csproj">
+      <Project>{47d551da-96ed-4ef6-96bf-4832059d4700}</Project>
+      <Name>dotIRC</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Oxlamon.Common\Oxlamon.Common.csproj">
+      <Project>{b0133c58-3d3f-4e6a-893b-70eb20ab1870}</Project>
+      <Name>Oxlamon.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TwoRatChat.Commands\TwoRatChat.Commands.csproj">
+      <Project>{1580421e-d96d-4849-9c1b-4600c03a4f62}</Project>
+      <Name>TwoRatChat.Commands</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TwoRatChat.Interfaces\TwoRatChat.Interfaces.csproj">
+      <Project>{8de539a2-dccd-47dd-a2fa-1a23dfa5e409}</Project>
+      <Name>TwoRatChat.Interfaces</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\twitchtv.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\cybergame.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\sc2tv.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\empire.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\gohatv.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\midlane.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\gipsyteam.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\youtube.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Data\FullSizes\js\jquery.cycleText.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\FullSizes\js\jquery.novacancy.min.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\FullSizes\Fonts\SIL Open Font License.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\FullSizes\Fonts\Vic Fieger License.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\FullSizes\pause.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\FullSizes\retro-end.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\FullSizes\retro-hello.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\FullSizes\retro-stream.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\FullSizes\soviet-hello.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\FullSizes\soviet-stream.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\img\borders\homm-back.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\img\borders\homm-tile.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\img\levels\30px-BronzeMedium.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\img\levels\30px-DiamondMedium.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\img\levels\30px-GoldMedium.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\img\levels\30px-GrandmasterMedium.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\img\levels\30px-MasterMedium.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\img\levels\30px-PlatinumMedium.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\img\levels\30px-SilverMedium.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\img\cybergame.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\img\empire.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\img\gamerstv.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\img\gipsyteam.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\img\gohatv.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\img\goodgame.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\img\hitboxtv.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\img\midlane.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\img\peka2tv.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\img\sc2tv.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\img\streamcube.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\img\system.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\img\test.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\img\twitchtv.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\img\youtube.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\js\chat-amaran.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\js\chat.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\js\jquery.amaran.min.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\js\jquery.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\js\jquery.snow.min.1.0.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\js\moments.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\js\shared.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\css\amaran.min.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\css\animate.min.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\css\chat-default.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\default.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\default3D.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\fonts\SIL Open Font License.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\homm-simple.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\levels.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <Resource Include="Assets\add.png" />
+    <Resource Include="Assets\hitboxtv.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\arrow_in.png" />
+    <Resource Include="Assets\gamerstv.png" />
+    <Resource Include="Assets\peka2tv.png" />
+    <Content Include="Assets\Sounds\joke_drum_effect.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Sounds\l1.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Sounds\l2.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Sounds\l3.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="Assets\wrench_orange.png" />
+    <Resource Include="Assets\streamcube.png" />
+    <None Include="Data\amaran.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\Commands.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Data\FullSizes\gg\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

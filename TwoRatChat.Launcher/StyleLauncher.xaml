@@ -1,0 +1,220 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <LinearGradientBrush x:Key="WindowBorder" StartPoint="0,0" EndPoint="0.2,1">
+        <GradientStop Offset="0.0" Color="#ff013D47" />
+        <GradientStop Offset="0.25" Color="#ff03D3EF" />
+        <GradientStop Offset="0.5" Color="#ff004A53" />
+        <GradientStop Offset="0.75" Color="#ff04BCD8" />
+        <GradientStop Offset="1.0" Color="#ff003A42" />
+    </LinearGradientBrush>
+    
+    <LinearGradientBrush x:Key="ButtonBackroundBrush" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Offset="0.0" Color="#002B32" />
+        <GradientStop Offset="0.7" Color="#000E11" />
+        <GradientStop Offset="1.0" Color="#002B32" />
+        
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="PressedButtonBackroundBrush" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Offset="0.0" Color="#000E11" />
+    </LinearGradientBrush>
+
+
+    <Style TargetType="{x:Type Thumb}">
+        <Setter Property="Stylus.IsPressAndHoldEnabled" Value="false"/>
+        <Setter Property="Background" Value="#ee000000"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Thumb}">
+                    <Border Background="{TemplateBinding Background}">
+                    <Border BorderBrush="{StaticResource WindowBorder}" 
+                                BorderThickness="1" Margin="1"
+                                >
+                    </Border>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type Button}">
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid>
+                        <Border BorderThickness="1" BorderBrush="#ff00343A">
+                            <Border x:Name="brd" BorderThickness="1" BorderBrush="#ff00D2F0" Background="{StaticResource ButtonBackroundBrush}">
+                                
+                            </Border>
+                        </Border>
+
+                        <TextBlock x:Name="shadow" Text="{TemplateBinding Content}" 
+                                   Foreground="#234357" Margin="0,-2,0,2" HorizontalAlignment="Center"
+                                   VerticalAlignment="Center" />
+                        <TextBlock x:Name="txt" Text="{TemplateBinding Content}" 
+                                   Foreground="#00D4F4" Margin="0,-1,0,1" HorizontalAlignment="Center"
+                                   VerticalAlignment="Center" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="txt" Property="Opacity" Value="0.1" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="brd" Property="Background" 
+                                    Value="{StaticResource PressedButtonBackroundBrush}" />
+                            <Setter TargetName="txt" Property="Margin" Value="0,0,0,0" />
+                            <Setter TargetName="shadow" Property="Visibility" Value="Collapsed" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <SolidColorBrush x:Key="ProgressBar.Progress" Color="#FF06B025"/>
+    <SolidColorBrush x:Key="ProgressBar.Background" Color="Black"/>
+    <SolidColorBrush x:Key="ProgressBar.Border" Color="#ff00D2F0"/>
+    
+    <Style TargetType="{x:Type ProgressBar}">
+        <Setter Property="Foreground" Value="{StaticResource ButtonBackroundBrush}"/>
+        <Setter Property="Background" Value="{StaticResource ProgressBar.Background}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource ProgressBar.Border}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ProgressBar}">
+                    <Grid x:Name="TemplateRoot">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Determinate"/>
+                                <VisualState x:Name="Indeterminate">
+                                    <Storyboard RepeatBehavior="Forever">
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="Animation">
+                                            <EasingDoubleKeyFrame KeyTime="0" Value="0.25"/>
+                                            <EasingDoubleKeyFrame KeyTime="0:0:1" Value="0.25"/>
+                                            <EasingDoubleKeyFrame KeyTime="0:0:2" Value="0.25"/>
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <PointAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransformOrigin)" Storyboard.TargetName="Animation">
+                                            <EasingPointKeyFrame KeyTime="0" Value="-0.5,0.5"/>
+                                            <EasingPointKeyFrame KeyTime="0:0:1" Value="0.5,0.5"/>
+                                            <EasingPointKeyFrame KeyTime="0:0:2" Value="1.5,0.5"/>
+                                        </PointAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}"/>
+                        <Rectangle x:Name="PART_Track"/>
+                        <Grid x:Name="PART_Indicator" ClipToBounds="true" HorizontalAlignment="Left" Margin="2">
+                            <Rectangle x:Name="Indicator" Fill="{TemplateBinding Foreground}"/>
+                            <Rectangle x:Name="Animation" Fill="{TemplateBinding Foreground}" RenderTransformOrigin="0.5,0.5">
+                                <Rectangle.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform/>
+                                        <SkewTransform/>
+                                        <RotateTransform/>
+                                        <TranslateTransform/>
+                                    </TransformGroup>
+                                </Rectangle.RenderTransform>
+                            </Rectangle>
+                        </Grid>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="Orientation" Value="Vertical">
+                            <Setter Property="LayoutTransform" TargetName="TemplateRoot">
+                                <Setter.Value>
+                                    <RotateTransform Angle="-90"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsIndeterminate" Value="true">
+                            <Setter Property="Visibility" TargetName="Indicator" Value="Collapsed"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <SolidColorBrush x:Key="BorderBackground" Color="#002B32" />
+
+
+    <!-- Полоса прокрутки -->
+    <Style x:Key="ScrollBarThumb" TargetType="{x:Type Thumb}">
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="OverridesDefaultStyle" Value="true"/>
+        <Setter Property="IsTabStop" Value="false"/>
+        <Setter Property="Focusable" Value="false"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Thumb}">
+                    <Border Background="{StaticResource BorderBackground}"
+                            Width="6" CornerRadius="3" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="ScrollBarHThumb" TargetType="{x:Type Thumb}">
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="OverridesDefaultStyle" Value="true"/>
+        <Setter Property="IsTabStop" Value="false"/>
+        <Setter Property="Focusable" Value="false"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Thumb}">
+                    <Border Background="{StaticResource BorderBackground}"
+                            Height="6" CornerRadius="3" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Полоса прокрутки -->
+    <ControlTemplate x:Key="VerticalScrollBar" TargetType="{x:Type ScrollBar}">
+        <Grid>
+            <Border CornerRadius="2" Width="2" 
+                    Background="Black" HorizontalAlignment="Center" />
+            <Track Name="PART_Track" IsDirectionReversed="true">
+                <Track.Thumb>
+                    <Thumb Style="{StaticResource ScrollBarThumb}" />
+                </Track.Thumb>
+            </Track>
+        </Grid>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="HorisontalScrollBar" TargetType="{x:Type ScrollBar}">
+        <Grid>
+            <Border CornerRadius="2" Height="2" 
+                    Background="Black" VerticalAlignment="Center" />
+            <Track Name="PART_Track" IsDirectionReversed="true">
+                <Track.Thumb>
+                    <Thumb Style="{StaticResource ScrollBarHThumb}" />
+                </Track.Thumb>
+            </Track>
+        </Grid>
+    </ControlTemplate>
+
+    <!-- Полоса прокрутки -->
+    <Style x:Key="{x:Type ScrollBar}" TargetType="{x:Type ScrollBar}">
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="OverridesDefaultStyle" Value="true"/>
+        <Style.Triggers>
+            <Trigger Property="Orientation" Value="Horizontal">
+                <Setter Property="Width" Value="Auto"/>
+                <Setter Property="Height" Value="10" />
+                <Setter Property="Template" Value="{StaticResource HorisontalScrollBar}" />
+            </Trigger>
+            <Trigger Property="Orientation" Value="Vertical">
+                <Setter Property="Width" Value="10"/>
+                <Setter Property="Height" Value="Auto" />
+                <Setter Property="Template" Value="{StaticResource VerticalScrollBar}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+</ResourceDictionary>

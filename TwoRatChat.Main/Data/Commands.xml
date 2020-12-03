@@ -1,0 +1,386 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE root[
+  <!ELEMENT root (config,profile*)>
+
+  <!ELEMENT config (item*)>
+
+  <!ELEMENT item EMPTY>
+  <!ATTLIST item
+            key CDATA #REQUIRED
+            value CDATA #REQUIRED>
+
+  <!ELEMENT profile (action*)>
+  <!ATTLIST profile
+            id CDATA #REQUIRED
+            window CDATA #IMPLIED
+            onactive CDATA #IMPLIED>
+
+  <!ELEMENT action ((hotkey|voice|chat|null|track)+,((jscommand|playsound|macro|speech|radio|print)*))>
+  <!ATTLIST action
+            id CDATA #IMPLIED>
+
+  <!ELEMENT track EMPTY>
+  <!ELEMENT print EMPTY>
+  <!ATTLIST print
+            format CDATA #REQUIRED>
+
+  <!ELEMENT null EMPTY>
+
+  <!ELEMENT chat EMPTY>
+  <!ATTLIST chat
+            regex CDATA #REQUIRED
+            minlevel CDATA #REQUIRED>
+
+  <!ELEMENT hotkey EMPTY>
+  <!ATTLIST hotkey
+        key CDATA #REQUIRED
+        modifiers CDATA #REQUIRED>
+
+  <!ELEMENT voice EMPTY>
+  <!ATTLIST voice
+        culture (ru-RU|en-US|fr-FR|en-GB|de-DE|ja-JP) #REQUIRED
+        start CDATA #REQUIRED
+        phrases CDATA #REQUIRED>
+
+  <!ELEMENT speech EMPTY>
+  <!ATTLIST speech
+        voice CDATA #REQUIRED
+        text CDATA #REQUIRED>
+
+  <!ELEMENT jscommand EMPTY>
+  <!ATTLIST jscommand
+        dest (Server|Local|Both) #REQUIRED
+        cmd CDATA #REQUIRED
+        prms CDATA #IMPLIED>
+
+  <!ELEMENT playsound (soundfile+)>
+  <!ATTLIST playsound
+        volume CDATA #REQUIRED>
+
+  <!ELEMENT soundfile EMPTY>
+  <!ATTLIST soundfile
+        fileName CDATA #REQUIRED
+        volume CDATA #REQUIRED>
+
+  <!ELEMENT macro (#PCDATA)>
+
+  <!ELEMENT radio EMPTY>
+  <!ATTLIST radio
+            cmd (PlayRadio|StopRadio|PlayFile|EnqueueYoutube|CancelTrack|Mute|VolumeDown|VolumeUp) #REQUIRED
+            param1 CDATA #IMPLIED>
+  <!--<!ATTLIST macro
+        window CDATA #REQUIRED>-->
+]>
+
+<root>
+  <config>
+    <item key="radio_00" value="http://pub5.di.fm:80/di_vocaltrance?86da8520b6949417344627ec"/>
+    <item key="volume" value="20" />
+  </config>
+  
+  <profile id="default" onactive="ok">
+    <action>
+      <hotkey key="L" modifiers="Shift + Control"/>
+      <!--<voice culture="ru-RU" start="аксель" phrases="смех, ржака"/>-->
+
+      <playsound volume="0.7">
+        <soundfile fileName="\Sounds\l1.mp3" volume="0.9"/>
+        <soundfile fileName="\Sounds\l2.mp3" volume="0.7"/>
+        <soundfile fileName="\Sounds\l3.mp3" volume="1.0"/>
+      </playsound>
+    </action>
+
+    <action>
+      <hotkey key="B" modifiers="Shift + Control"/>
+      <!--<voice culture="ru-RU" start="аксель" phrases="шутка"/>-->
+
+      <playsound volume="0.7">
+        <soundfile fileName="\Sounds\joke_drum_effect.mp3" volume="0.9"/>
+      </playsound>
+    </action>
+
+    <action id="attention">
+      <null />
+      <playsound volume="0.7">
+        <soundfile fileName="\Sounds\Devicecon.wav" volume="0.5"/>
+      </playsound>
+    </action>
+
+    <action id="newviewer">
+      <null/>
+      <speech voice="IVONA 2 Tatyana" text="Новый крыс жаждет геноцида"/>
+    </action>
+
+    <action id="ok">
+      <hotkey key="Q" modifiers="Shift + Control"/>
+
+      <jscommand dest="Server" cmd="shownotify" prms="Всем привет, это крысочат!"/>
+      <speech voice="IVONA 2 Tatyana" text="Крысо-чат активирован"/>
+
+      <!--<radio cmd="PlayRadio" param1="http://pub5.di.fm:80/di_vocaltrance?86da8520b6949417344627ec" />-->
+    </action>
+
+    <!--<action>
+      <track />
+
+      <print format="Трек: '{param1}'!"/>
+    </action>
+
+    <action>
+      <chat regex="\!tube\s(.*?)$" minlevel="2"/>
+      <radio cmd="EnqueueYoutube" />
+    </action>
+
+    <action>
+      <hotkey key="Down" modifiers="Control + Shift"/>
+      <radio cmd="VolumeDown" />
+    </action>
+
+    <action>
+      <hotkey key="Up" modifiers="Control + Shift"/>
+      <radio cmd="VolumeUp" />
+    </action>
+
+    <action>
+      <hotkey key="Delete" modifiers="Control + Shift"/>
+      <radio cmd="CancelTrack" />
+    </action>-->
+  </profile>
+
+ <profile id="DD" window="Darkest.Dungeon" onactive="ok">
+ 	<action>
+      <chat regex="\!go$" />
+       <macro>
+        xdown Right;
+        delay 200;
+        xup Right;
+        delay 20;
+      </macro>
+    </action>
+ </profile>
+
+
+  <profile id="Elite" window="Elite.\-.Dangerous.\(CLIENT\)" onactive="ok">
+    <action>
+      <voice culture="ru-RU" start="аксель" phrases="движки в ноль,стоп"/>
+
+      <macro>
+        xdown X;
+        delay 20;
+        xup X;
+        delay 20;
+      </macro>
+    </action>
+
+    <action>
+      <voice culture="ru-RU" start="аксель" phrases="форсаж"/>
+
+      <macro>
+        xpress Tab 20 20;
+      </macro>
+
+       <speech voice="Microsoft Irina Desktop - Russian"
+              text="Форcаж активирован."/>
+    </action>
+
+    <action>
+      <voice culture="ru-RU" start="аксель" phrases="прыжок"/>
+
+      <macro>
+        xpress J 20 20;
+      </macro>
+    </action>
+
+
+    <action>
+      <voice culture="ru-RU" start="аксель" phrases="сброс"/>
+
+      <macro>
+        xpress J 20 40;
+        xpress J 20 20;
+      </macro>
+    </action>
+
+    <action>
+      <voice culture="ru-RU" start="аксель" phrases="диполи,сбрось диполи"/>
+
+      <macro>
+        xpress NumPad8 20 40;
+      </macro>
+    </action>
+
+    <action>
+      <voice culture="ru-RU" start="аксель" phrases="батарейка"/>
+
+      <macro>
+        xpress NumPad7 20 40;
+      </macro>
+    </action>
+
+
+    <action>
+      <voice culture="ru-RU" start="аксель" phrases="камера"/>
+
+      <macro>
+        xpress NumPad9 20 40;
+      </macro>
+    </action>
+
+    <action>
+      <voice culture="ru-RU" start="аксель" phrases="галактика,покажи галактику"/>
+
+      <macro>
+        xpress NumPad5 20 40;
+      </macro>
+    </action>
+
+
+    <action>
+      <voice culture="ru-RU" start="аксель" phrases="карта,покажи карту системы"/>
+
+      <macro>
+        xpress NumPad4 20 40;
+      </macro>
+    </action>
+
+    <action>
+      <voice culture="ru-RU" start="аксель" phrases="полный назад"/>
+
+      <macro>
+        xpress NumPad3 20 40;
+      </macro>
+    </action>
+
+    <action>
+      <voice culture="ru-RU" start="аксель" phrases="полный вперед"/>
+
+      <macro>
+        xpress NumPad1 20 40;
+      </macro>
+    </action>
+
+    <action>
+      <voice culture="ru-RU" start="аксель" phrases="средняя скорость"/>
+
+      <macro>
+        xpress NumPad2 20 40;
+      </macro>
+    </action>
+
+    <action>
+      <voice culture="ru-RU" start="аксель" phrases="валим"/>
+
+      <macro>
+        xpress Up 20 20;
+        xpress Up 20 20;
+        xpress Up 20 20;
+        xpress Up 20 20;
+        xpress NumPad1 20 20;
+        xpress Tab 20 20;
+      </macro>
+    </action>
+
+    <action>
+      <voice culture="ru-RU" start="аксель" phrases="энергия на оружие"/>
+
+      <macro>
+        xpress Right 20 40;
+        xpress Right 20 40;
+        xpress Right 20 40;
+        xpress Right 20 40;
+      </macro>
+    </action>
+
+    <action>
+      <voice culture="ru-RU" start="аксель" phrases="энергия на щиты"/>
+
+      <macro>
+        xpress Left 20 40;
+        xpress Left 20 40;
+        xpress Left 20 40;
+        xpress Left 20 40;
+      </macro>
+    </action>
+
+
+    <action>
+      <voice culture="ru-RU" start="аксель" phrases="энергия на двигатель"/>
+
+      <macro>
+        xpress Up 20 40;
+        xpress Up 20 40;
+        xpress Up 20 40;
+        xpress Up 20 40;
+      </macro>
+    </action>
+
+    <action>
+      <voice culture="ru-RU" start="аксель" phrases="энергия бой"/>
+
+      <macro>
+        xpress Down 20 40;
+        xpress Up 20 40;
+        xpress Right 20 40;
+        xpress Right 20 40;
+        xpress Right 20 40;
+        xpress Left 20 40;
+      </macro>
+    </action>
+
+
+  
+  </profile>
+
+  <profile id="Skyrim" window="^Skyrim$" onactive="ok">
+    <action>
+      <voice culture="ru-RU" start="аксель" phrases="сохранись"/>
+
+      <macro>
+        xpress F5 100 100;
+      </macro>
+
+      <speech voice="Microsoft Irina Desktop - Russian"
+              text="Игра сохранена"/>
+    </action>
+
+    <action id="ok">
+      <null />
+
+      <speech voice="Microsoft Irina Desktop - Russian" text="Профиль скайрим активирован"/>
+    </action>
+  </profile>
+
+  <profile id="chrome" window=".*?Google Chrome$">
+    <action>
+      <voice culture="ru-RU" start="аксель" phrases="обнови страницу"/>
+
+      <macro>
+        xpress F5 20 20;
+      </macro>
+    </action>
+
+    <action>
+      <voice culture="ru-RU" start="аксель" phrases="смени страницу"/>
+
+      <macro>
+        xdown ControlKey;
+        xdown Tab;
+        sleep 100;
+        xup Tab;
+        xup ControlKey;
+      </macro>
+    </action>
+
+    <action>
+      <voice culture="ru-RU" start="аксель" phrases="закрой страницу"/>
+
+      <macro>
+        xdown ControlKey;
+        xdown W;
+        sleep 100;
+        xup W;
+        xup ControlKey;
+      </macro>
+    </action>
+  </profile>
+</root>

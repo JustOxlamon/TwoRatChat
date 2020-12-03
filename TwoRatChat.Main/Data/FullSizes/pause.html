@@ -1,0 +1,976 @@
+<html>
+<head>
+ 	<meta charset="utf-8">
+      <link rel="stylesheet" href="/tworat/css/animate.min.css">
+       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="/tworat/FullSizes/js/jquery.cycleText.js"></script>
+    <script src="/tworat/FullSizes/js/jquery.novacancy.min.js"></script>    
+    <script type="text/javascript">
+        var _animShow ='fadeInRight';
+        var _animHide = 'fadeOut';
+
+        var _rootChat = "/tworat/chat/";
+        var _rootAsset = "/tworat/";
+        var _maxMessages = 20;
+    </script>
+    <script src="/tworat/js/shared.js"></script>
+    <script src="/tworat/js/chat.js"></script>
+	<title></title>
+
+	<style>
+		@font-face {
+			font-family: RedOctober; /* Имя шрифта */
+			src: url(Fonts/RedOctober-Regular.ttf); /* Путь к файлу со шрифтом */
+		}
+		@font-face {
+			font-family: NewsCycle; /* Имя шрифта */
+			src: url(Fonts/NewsCycle-Regular.ttf); /* Путь к файлу со шрифтом */
+		}
+		@font-face {
+			font-family: MajorShift; /* Имя шрифта */
+			src: url(Fonts/major_shift.ttf); /* Путь к файлу со шрифтом */
+		}
+
+
+		@-webkit-keyframes neon1 {
+		  from {
+		    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #FF1177, 0 0 70px #FF1177, 0 0 80px #FF1177, 0 0 100px #FF1177, 0 0 150px #FF1177;
+		  }
+		  to {
+		    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #FF1177, 0 0 35px #FF1177, 0 0 40px #FF1177, 0 0 50px #FF1177, 0 0 75px #FF1177;
+		  }
+		}
+
+		@keyframes neon6 {
+		  from {
+		    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #ff00de, 0 0 70px #ff00de, 0 0 80px #ff00de, 0 0 100px #ff00de, 0 0 150px #ff00de;
+		  }
+		  to {
+		    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #ff00de, 0 0 35px #ff00de, 0 0 40px #ff00de, 0 0 50px #ff00de, 0 0 75px #ff00de;
+		  }
+		}
+
+
+
+		@-webkit-keyframes backanim {
+		     0%{background-position:0% 0%}
+		    50%{background-position:0% 100%}
+		    100%{background-position:0% 0%}
+		}
+		@-moz-keyframes backanim {
+		    0%{background-position:0% 0%}
+		    50%{background-position:0% 100%}
+		    100%{background-position:0% 0%}
+		}
+		@keyframes backanim { 
+			    0%{background-position:0% 0%}
+		    50%{background-position:0% 100%}
+		    100%{background-position:0% 0%}
+		}
+
+
+		#root{
+			left: 330px;
+			top: 140px;
+			position: absolute;
+			width: 600px;
+			max-height: 500px;
+			overflow:hidden;    
+			text-align: justify;
+
+			margin: 2px;
+			padding: 10px;
+
+			border: 2px solid #dadada;
+    		border-radius: 1px;		
+    		outline: none;
+		    border-color: #9e0000;
+		    box-shadow: 0 0 10px #9e0090;
+
+  z-index: 40;
+		background: linear-gradient(16deg, rgba(1,1,1,0.8), #110000);
+		background-size: 200% 200%;
+
+		-webkit-animation: backanim 30s ease infinite;
+		-moz-animation: backanim 30s ease infinite;
+		animation: backanim 30s ease infinite;
+		}
+	
+
+
+
+		/*chat*/
+		.message .text{
+			font-family: 'RedOctober'; 
+			font-size: 16pt; 
+		    color: #ff9090;
+
+		}
+		.message .namecontainer{
+		}
+		.message .name{
+			font-family: 'RedOctober'; 
+			font-size: 16pt; 
+		    color: #ff131f;
+		}
+
+		.message .namecontainer:after{
+			font-family: 'MajorShift'; 
+			font-size: 16pt; 
+		    color: #9933ff;
+			content: ": ";
+		}
+
+
+		.messagesys .text{
+			position: relative;
+			font-family: 'NewsCycle'; 
+			font-size: 16pt; 
+		    color: #ff66ff;
+		}
+		.messagesys .namecontainer{
+			display: inline;
+		}
+		.messagesys .name{
+			position: relative;
+			font-family: 'RedOctober'; 
+			font-size: 16pt; 
+		    color: #9933ff;
+		}
+
+		.messagesys .namecontainer:after{
+			position: relative;
+			font-family: 'RedOctober'; 
+			font-size: 16pt; 
+		    color: #9933ff;
+			content: ": ";
+		}
+
+
+
+		.messagetm .text{
+			position: relative;
+			font-family: 'RedOctober'; 
+			font-size: 16pt; 
+		    color: #ffeeff;
+		}
+		.messagetm .namecontainer{
+		}
+		.messagetm .name{
+			position: relative;
+			font-family: 'RedOctober'; 
+			font-size: 16pt; 
+		    -webkit-transition: all 0.5s;
+			-moz-transition: all 0.5s;
+			transition: all 0.5s;
+			color: #fff;
+			-webkit-animation: neon1 1.5s ease-in-out infinite alternate;
+		}
+
+		.messagetm .namecontainer:after{
+			position: relative;
+			font-family: 'RedOctober'; 
+			font-size: 12pt; 
+		    color: #9933ff;
+			content: ": ";
+		}
+
+		#world{
+			top: 20px;
+			left: 20px;
+			width: 820px;
+			height: 580px;
+			position: absolute;
+				
+		}
+
+/*/////////////////////////////////////////*/
+@import 'https://fonts.googleapis.com/css?family=Varela+Round';
+body {
+  background-color:#181818;
+}
+#grid {
+  width: 200%;
+  overflow:hidden;
+  border: 1px solid rgba(255,0,0,1);
+  height: 300px;
+  position: fixed;
+  box-sizing: border-box;
+  -webkit-transform: perspective(100) rotate3d(1, 0, 0, 40deg);
+  -webkit-transform-style: preserve-3d;
+  left: -49%;
+  top: 40%;
+  z-index: 0;
+background: -webkit-radial-gradient(center, ellipse cover,  
+	rgba(54,0,0,0) 0%,
+	rgba(54,0,0,0.68) 45%,
+	rgba(79,0,0,1) 66%,
+	rgba(102,0,0,0.44) 85%,
+	rgba(102,0,0,0) 100%);
+}
+#grid:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+#grid > div {
+  float: left;
+  width: 2.22%;
+  height: 300px;
+  position: relative;
+  box-sizing: border-box;
+  left: 0;
+  -webkit-animation: paralax 1s ease infinite;
+  -webkit-animation-timing-function: linear;
+}
+#grid > div > div {
+  width: 100%;
+  border: 1px solid rgba(255,0,0,1);
+  height: 22px;
+  position: relative;
+  box-sizing: border-box;
+}
+#grid > div > div:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  box-shadow: 0 0 10px 0 rgba(255,0,0,0.3);
+}
+#grid > div > div:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  box-shadow: inset 0 0 3px 0 rgba(255,0,0,0.3);
+}
+
+#glow1 {
+  position: fixed;
+  z-index: 1;
+  height: 2px;
+  width: 100%;
+  top: calc(40% + 90px);
+  left: 0;
+  background-color: rgba(255, 255, 255, 1);
+  box-shadow: 0 0 200px 100px rgba(217, 0, 0, 0.8);
+}
+#glow1:after {
+  content: "";
+  position: absolute;
+  height: 2px;
+  width: 100%;
+  box-shadow: 0 0 100px 20px rgba(255,255,255, 0.8);
+}
+#glow1:before {
+  content: "";
+  position: absolute;
+  height: 2px;
+  width: 100%;
+  box-shadow: 0 0 15px 5px rgba(255,255,255, 0.3);
+}
+
+@-webkit-keyframes paralax {
+  0%   { top: 0; }
+  100% { top: 22px; }
+}
+	</style>
+
+</head>
+<body onload="onStart();">
+<div class="title">Oxlamon online</div>
+
+<div id="grid">
+  <div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+  <div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+  <div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+  <div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+  <div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+  <div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+  <div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+  <div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+  <div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+  <div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+  <div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+  <div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+  <div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+  <div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+  <div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+  <div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+  <div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+  <div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+  <div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+  <div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+  <div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+  <div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+  <div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+  <div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+  <div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+  <div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+  <div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+  <div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+  <div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+  <div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+  <div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+  <div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+  <div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+  <div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+  <div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+  <div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+  <div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+  <div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+  <div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+  <div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+  <div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+  <div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+  <div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+  <div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+  <div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+</div>
+<div id="glow1"></div>
+	
+<div class="content">
+
+		<div id="root">
+    		  <div style="height:2000px"></div>
+		</div>
+	
+
+	</div>
+
+</body>
+</html>

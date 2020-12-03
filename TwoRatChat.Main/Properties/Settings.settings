@@ -1,0 +1,201 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="TwoRatChat.Main.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="Upgraded" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="Window_X" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="Window_Y" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="Window_Width" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">300</Value>
+    </Setting>
+    <Setting Name="Window_Height" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">300</Value>
+    </Setting>
+    <Setting Name="Window_OverlayMode" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="Window_TopMost" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="Window_ShowHeader" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="Window_DisableFullDrag" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="url_Goodgame" Type="System.String" Scope="User">
+      <Value Profile="(Default)">ws://chat.goodgame.ru:8081/chat/websocket|ws://goodgame.ru:8081/chat/websocket</Value>
+    </Setting>
+    <Setting Name="Chat_LoadHistory" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="ChatSave" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="Window_AccentColor" Type="System.UInt32" Scope="User">
+      <Value Profile="(Default)">4283925199</Value>
+    </Setting>
+    <Setting Name="Window_Border" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="Window_BackgroundColor" Type="System.UInt32" Scope="User">
+      <Value Profile="(Default)">570425344</Value>
+    </Setting>
+    <Setting Name="url_Twitch" Type="System.String" Scope="User">
+      <Value Profile="(Default)">irc.twitch.tv:6667</Value>
+    </Setting>
+    <Setting Name="Chat_RootSkin" Type="System.String" Scope="User">
+      <Value Profile="(Default)">/default.html</Value>
+    </Setting>
+    <Setting Name="Chat_ImagePath" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="url_Cybergame" Type="System.String" Scope="User">
+      <Value Profile="(Default)">ws://cybergame.tv:9090/websocket</Value>
+    </Setting>
+    <Setting Name="Window_MouseTransparent" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="sc2tv_lastCount" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">10</Value>
+    </Setting>
+    <Setting Name="url_Sc2tv" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://chat.sc2tv.ru/memfs/channel-{0}.json</Value>
+    </Setting>
+    <Setting Name="url_Empire" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://www.empiretv.org/sites/default/files/fastchat/chat{0}.json?{1}</Value>
+    </Setting>
+    <Setting Name="url_GohaTV" Type="System.String" Scope="User">
+      <Value Profile="(Default)">i.gohanet.ru:6667</Value>
+    </Setting>
+    <Setting Name="url_midlane" Type="System.String" Scope="User">
+      <Value Profile="(Default)">midlane.ru:7070</Value>
+    </Setting>
+    <Setting Name="url_GamersTV" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://gamerstv.ru/modules/ajax/chat_cache/room_{0}.js</Value>
+    </Setting>
+    <Setting Name="HTTP_ListenUri" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://localhost:2222/</Value>
+    </Setting>
+    <Setting Name="HTTP_Enable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="Chat_Blacklist" Type="System.String" Scope="User">
+      <Value Profile="(Default)">3•obmorok•</Value>
+    </Setting>
+    <Setting Name="GG_AllowAnimatedSmiles" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="GG_AllowChannelSmiles" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="EnableGlobalHoyKeys" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="GlobalVolume" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="twitch_ShowSubsIcon" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="twitch_AllowUseColors" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="hitbox_AllowUserColors" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="bot_GGLogin" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="bot_GGPass" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="bot_TwitchLogin" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="bot_TwitchPass" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="newFollowerShowInChat" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="gg_HeaderMode" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="twitch_Followers" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="promouteMessage" Type="System.String" Scope="User">
+      <Value Profile="(Default)">{0} получил новый уровень. Теперь он {1}.</Value>
+    </Setting>
+    <Setting Name="allowLeveling" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="soundOnMessage" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="youtube_ShowIcons" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="voice_FirstMeet" Type="System.String" Scope="User">
+      <Value Profile="(Default)">{0} готов к геноциду!</Value>
+    </Setting>
+    <Setting Name="voice_Promoute" Type="System.String" Scope="User">
+      <Value Profile="(Default)">{0} получил новый уровень. Теперь он {1}.</Value>
+    </Setting>
+    <Setting Name="voice_Followers" Type="System.String" Scope="User">
+      <Value Profile="(Default)">{0} при соединился к команде крысоидов!</Value>
+    </Setting>
+    <Setting Name="voice_Personals" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="url_StreamCube" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://streamcube.tv/{0}</Value>
+    </Setting>
+    <Setting Name="showUrlsAsImages" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="maxImageWidth" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">320</Value>
+    </Setting>
+    <Setting Name="maxImageHeight" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">240</Value>
+    </Setting>
+    <Setting Name="showImageMode" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="imageWhiteList" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="imageBlackList" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="ShowInTaskbar" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="peka2tv_chatUrl" Type="System.String" Scope="User">
+      <Value Profile="(Default)">wss://chat.funstream.tv</Value>
+    </Setting>
+    <Setting Name="voice_voiceId" Type="System.String" Scope="User">
+      <Value Profile="(Default)">IVONA 2 Tatyana</Value>
+    </Setting>
+    <Setting Name="youTubeAPIKey" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="voice_ask" Type="System.String" Scope="User">
+      <Value Profile="(Default)">{0} спрашивает: '{1}'</Value>
+    </Setting>
+    <Setting Name="voice_talk" Type="System.String" Scope="User">
+      <Value Profile="(Default)">{0} говорит: '{1}'</Value>
+    </Setting>
+    <Setting Name="voice_caps" Type="System.String" Scope="User">
+      <Value Profile="(Default)">{0} восклицает: '{1}'</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

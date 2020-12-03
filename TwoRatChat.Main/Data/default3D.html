@@ -1,0 +1,169 @@
+<html>
+<!--%SAVEBEGIN%tworat.trct|id=animShow,value=bounceInRight|id=animHide,value=bounceOutRight|id=maxMessages,value=10|id=sexTssem,value=#FF00EE00|id=mesnamefont3,value=Calibri,size=15|id=mesnamesty3,value=font-weight: bold;|id=mesnamecol3,value=#FFDD0D2D|id=mestextfont3,value=Calibri,size=15|id=mestextfsty3,value=font-weight: bold;|id=mestextfcol3,value=#FFFFA6C9|id=mesback3,value=#88FFFFFF|id=messhadow3,value=|id=mestop3,value=|id=mesimage3,ext1=,img1=,t1=0,t2=0,t3=0,t4=0,ext2=,img2=|id=mesnamefont2,value=Calibri,size=14|id=mesnamesty2,value=font-weight: bold;|id=mesnamecol2,value=#FF8F6FD2|id=mestextfont2,value=Calibri,size=14|id=mestextfsty2,value=|id=mestextfcol2,value=#E9FF6D33|id=mesback2,value=#17FFFFFF|id=messhadow2,value=text-shadow: 0 1px 1px black;|id=mestop2,value=margin-top: 1px;|id=mesimage2,ext1=,img1=,t1=0,t2=0,t3=0,t4=0,ext2=,img2=|id=mesnamefont,value=Calibri,size=14|id=mesnamesty,value=|id=mesnamecol,value=#FF8E87E6|id=mestextfont,value=Calibri,size=14|id=mestextfsty,value=|id=mestextfcol,value=#FFFEEBFF|id=mesback,value=#00000709|id=messhadow,value=text-shadow: 0 1px 1px black;|id=mestop,value=margin-top: 1px;|id=mesimage,ext1=,img1=,t1=0,t2=0,t3=0,t4=0,ext2=,img2=|%SAVEEND%-->
+<!--%NAME=TwoRatChat default template%-->
+<!--%EXT=HTML%-->
+<!--%DESC=Шаблон для чата, который занимает всю область.%-->
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <link rel="stylesheet" href="/tworat/css/animate.min.css">
+    <script type="text/javascript">
+        var _animShow ='zoomIn';
+        var _animHide = 'zoomOutDown';
+
+        var _rootChat = "/tworat/chat/";
+        var _rootAsset = "/tworat/";
+        var _maxMessages = 10;
+    </script>
+    <script src="/tworat/js/shared.js"></script>
+    <script src="/tworat/js/chat.js"></script>
+
+<style type="text/css">
+::-webkit-scrollbar {
+	visibility: hidden;
+}
+html, body {
+    background-color: rgba(255,255,255,0.0);
+    opacity: 0.99;
+    padding: 0 0 0 0;
+    margin: 0 0 0 0;
+    font-size: 20;
+}
+#root{
+	/*margin: -50px 30px 0px 0px;*/
+    height: 100%;
+    overflow:hidden;
+    z-index:-1; /* Remove this line if it's not going to be a background! */
+    -webkit-transform:rotateX(20deg)  scale(0.8, 0.8);
+    border-color: black;
+    border-width: 2px;
+}
+
+#back3d{
+    -webkit-perspective: 100px; 
+}
+
+/*Контейнер чата*/
+.container{
+	overflow: hidden;
+	position: fixed;
+	width: 90%;
+}
+
+.message_badge{
+	margin-right: 1px;
+	width: 16px;
+	height: 16px;
+}
+
+.message_link{
+}
+
+.imgfromurl{
+}
+
+a{
+	color:#00EE00;
+}
+
+/*//////////////////////// Сообщение системное //////////////////////////////*/
+
+.messagesys .name{
+    display: inline-block;
+    position: relative;
+	font-family: 'Calibri'; font-size: 15pt; 
+    font-weight: bold;
+    color: #DD0D2D;
+    margin-right: 5px;
+}
+
+.messagesys .text{
+    position: relative;
+	font-family: 'Calibri'; font-size: 15pt; 
+    font-weight: bold;
+    color: #FFA6C9;
+}
+
+.messagesys{
+	height: auto;
+	background-color: rgba( 255, 255, 255, 0.5333334 );
+
+
+
+}
+
+/*//////////////////////// Сообщение выделенное //////////////////////////////*/
+
+.messagetm .name{
+    display: inline-block;
+    position: relative;
+	font-family: 'Calibri'; font-size: 14pt; 
+    font-weight: bold;
+    color: #8F6FD2;
+    margin-right: 5px;
+}
+
+.messagetm .text{
+    position: relative;
+	font-family: 'Calibri'; font-size: 14pt; 
+    
+    color: #FF6D33;
+}
+
+.messagetm{
+	height: auto;
+	background-color: rgba( 255, 255, 255, 0.09019608 );
+text-shadow: 0 1px 1px black;
+margin-top: 1px;
+
+}
+
+
+
+
+/*//////////////////////// Сообщение обычное //////////////////////////////*/
+
+
+.message .name{
+    display: inline-block;
+    position: relative;
+	font-family: 'Calibri'; font-size: 14pt; 
+    
+    color: #8E87E6;
+    margin-right: 5px;
+}
+
+.message .text{
+    position: relative;
+	font-family: 'Calibri'; font-size: 14pt; 
+    
+    color: #FEEBFF;
+}
+
+.message{
+	height: auto;
+	background-color: rgba( 0, 7, 9, 0 );
+text-shadow: 0 1px 1px black;
+margin-top: 1px;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+</style>
+</head>
+<body onload="onStart();">
+<div id="back3d">
+<div id="root">
+    <div style="height:2000px" />
+</div></div>
+</body>
+</html>

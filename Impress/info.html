@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>A Study in 3D Rotations| by Henrik Ingo @henrikingo</title>
+    <meta name="description" content="Explore impress.js in 3D" />
+    <meta name="author" content="Henrik Ingo" />
+    <link href="info.css" rel="stylesheet" />
+</head>
+
+<body class="impress-not-supported">
+<div class="fallback-message">
+    <p>Your browser <b>doesn't support the features required</b> by impress.js, so you are presented with a simplified version of this presentation.</p>
+    <p>For the best experience please use the latest <b>Chrome</b>, <b>Safari</b> or <b>Firefox</b> browser.</p>
+</div>
+
+<div id="impress" data-transition-duration="2000">
+
+    <div id="strar" class="step" data-x="0" data-y="-120" data-transition-delay="12000"  data-transition-duration="1000">
+    </div>
+    <div id="bored" class="step slideb" data-x="0" data-y="0" data-transition-delay="2000"  data-transition-duration="1000">
+        <q>&nbsp;</q>
+        <q>Привет тебе, славный любитель геноцида. Ты на стриме OXLAMON'а.</q>
+    </div>
+     <div class="step slideb" data-x="350" data-y="50" data-rotate="90" data-scale="1" data-transition-delay="2000" data-transition-duration="1000">
+        <q>Я не знаю зачем ты здесь.</q>
+        <q>Но ты должен подписаться.</q>
+        <q>Вот прямо сейчас.</q>
+    </div>
+
+    <div class="step slide" data-x="-440" data-y="-160" data-rotate="-90" data-scale="3" data-transition-delay="5000" data-transition-duration="1000">
+        <q>А, вот имена тех, тех кто донатил:</q>
+        <ul>
+            <li>Marrel - 500р</li>
+            <li>MorrieSpect - 300р</li>
+            <li>odseg - 101р</li>
+        </ul>
+    </div>
+
+    <div id="wer" class="step slideb" data-x="0" data-y="0" data-rotate="0" data-scale="0.05" data-transition-delay="3000"  data-transition-duration="2000">
+        <q>&nbsp;</q>
+        <q>Приятного просмотра...</q>
+    </div>
+
+    <div id="clean" class="step" data-x="0" data-y="0" data-scale="50" data-z="500" data-rotate-x="0" data-transition-delay="20000"  data-transition-duration="3000">
+        
+    </div>
+
+     <div id="clean33" class="step" data-x="1000" data-y="0" data-scale="1" data-z="0" data-rotate-x="0" data-transition-delay="300000"  data-transition-duration="10">
+        
+    </div>
+</div>
+
+
+
+<script type="text/javascript" src="impress.js"></script>
+<script>//impress().init();
+ var impress = impress();
+  impress.init();
+
+  document.addEventListener('impress:stepenter', function(e){
+    if (typeof timing !== 'undefined') clearInterval(timing);
+    var duration = (e.target.getAttribute('data-transition-delay') ? e.target.getAttribute('data-transition-delay') : 1000); // use the set duration or fallback to 2000ms
+    timing = setInterval(impress.next, duration);
+  });
+
+</script>
+
+</body>
+</html>

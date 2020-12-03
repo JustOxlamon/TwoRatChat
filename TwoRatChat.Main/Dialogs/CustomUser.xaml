@@ -1,0 +1,54 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TwoRatChat.Main.Dialogs"
+        xmlns:Model="clr-namespace:TwoRatChat.Main.Model" x:Class="TwoRatChat.Main.Dialogs.CustomUser"
+        mc:Ignorable="d" Closing="Window_Closing"
+        Title="CustomUsers" Height="280.402" Width="900" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <CollectionViewSource x:Key="customUsersViewSource" d:DesignSource="{d:DesignInstance {x:Type Model:CustomUsers}}"/>
+    </Window.Resources>
+    <Grid DataContext="{StaticResource customUsersViewSource}">
+
+        <DataGrid x:Name="customUsersDataGrid" RowDetailsVisibilityMode="VisibleWhenSelected" 
+                  
+                  ItemsSource="{Binding}" EnableRowVirtualization="True" AutoGenerateColumns="False" Margin="0,33,0,0">
+            <DataGrid.Columns>
+                <DataGridComboBoxColumn x:Name="sourceColumn" Header="Source"
+                                        SelectedValuePath="SourceId" Width="200"
+                                        DisplayMemberPath="Title" 
+                                        SelectedValueBinding="{Binding Source}">
+                </DataGridComboBoxColumn>
+                
+                <DataGridTextColumn x:Name="nicknameColumn" Width="200" 
+                                    Header="Nickname" Binding="{Binding Nickname}"/>
+
+                <DataGridCheckBoxColumn x:Name="blacklistedColumn" Width="SizeToHeader" Header="Blacklisted" Binding="{Binding Blacklisted}"/>
+                <DataGridTextColumn x:Name="blacklistPhraseColumn" Width="SizeToHeader" Header="Blacklist Phrase" Binding="{Binding BlacklistPhrase}"/>
+                <DataGridTextColumn x:Name="welcomePhraseColumn" Width="SizeToHeader" Header="Welcome Phrase" Binding="{Binding WelcomePhrase}"/>
+
+                <DataGridTextColumn x:Name="levelColumn" Width="SizeToHeader" Header="Level" Binding="{Binding Level}"/>
+                <DataGridTextColumn x:Name="expirienceColumn" Width="SizeToHeader" Header="Expirience" Binding="{Binding Expirience}"/>
+                <DataGridTextColumn Width="SizeToHeader" Header="Messages" IsReadOnly="True"
+                                    Binding="{Binding MessageCount}"/>
+                <DataGridTextColumn Width="100" Header="Last date" IsReadOnly="True"
+                                    Binding="{Binding LastMessage}"/>
+                <DataGridCheckBoxColumn Width="100" Header="Voice"
+                                    Binding="{Binding ReadMessages}"/>
+                <DataGridTextColumn Width="100" Header="Alias"
+                                    Binding="{Binding Alias}"/>
+                <DataGridComboBoxColumn x:Name="voiceColumn" Header="VoiceID"
+                                        Width="200"
+                                        SelectedValueBinding="{Binding VoiceId}">
+                </DataGridComboBoxColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <ToolBar HorizontalAlignment="Left" VerticalAlignment="Top" Height="28" Width="519">
+            <Button Content="Add" Click="Button_Click" />
+            <Button Content="Remove" Click="Button_Click_1" />
+        </ToolBar>
+
+    </Grid>
+</Window>

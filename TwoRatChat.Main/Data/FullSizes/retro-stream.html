@@ -1,0 +1,246 @@
+<html>
+<head>
+ 	<meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="/tworat/FullSizes/js/jquery.cycleText.js"></script>
+    <script src="/tworat/FullSizes/js/jquery.novacancy.min.js"></script>    
+    <script type="text/javascript">
+        var _animShow ='fadeIn';
+        var _animHide = 'fadeOut';
+
+        var _rootChat = "/tworat/chat/";
+        var _rootAsset = "/tworat/";
+        var _maxMessages = 20;
+    </script>
+    <script src="/tworat/js/shared.js"></script>
+    <script src="/tworat/js/chat.js"></script>
+	<title></title>
+	<style>
+	::-webkit-scrollbar {
+		visibility: hidden;
+	}
+	html, body {
+	    background-color: rgba(255,255,255,0.0);
+	    opacity: 0.99;
+	    padding: 0 0 0 0;
+	    margin: 0 0 0 0;
+	    font-size: 20;
+	}
+		@font-face {
+			font-family: Neon; /* Имя шрифта */
+			src: url(Fonts/neon.ttf); /* Путь к файлу со шрифтом */
+		}
+		@font-face {
+			font-family: NewsCycle; /* Имя шрифта */
+			src: url(Fonts/NewsCycle-Regular.ttf); /* Путь к файлу со шрифтом */
+		}
+		@font-face {
+			font-family: MajorShift; /* Имя шрифта */
+			src: url(Fonts/major_shift.ttf); /* Путь к файлу со шрифтом */
+		}
+
+
+		html{
+			text-align: justify ;
+		}
+
+		#root{
+			right: 2px;
+			top: 2px;
+			position: absolute;
+			width: 220px;
+			max-height: 200px;
+			overflow:hidden;
+			margin: 2px;
+			padding: 10px;
+			background-color:  rgba(0,0,0,0.5);
+		}
+	
+		.content{
+			width: 1280px;
+			height: 720px;
+			position: relative;
+		}
+
+		/*chat*/
+		.message .text{
+			font-family: 'NewsCycle'; 
+			font-size: 12pt; 
+		    color: #ff66ff;
+
+		}
+		.message .namecontainer{
+		}
+		.message .name{
+			font-family: 'MajorShift'; 
+			font-size: 12pt; 
+		    color: #9933ff;
+		}
+
+		.message .namecontainer:after{
+			font-family: 'MajorShift'; 
+			font-size: 12pt; 
+		    color: #9933ff;
+			content: ": ";
+		}
+
+
+		.messagesys .text{
+			position: relative;
+			font-family: 'NewsCycle'; 
+			font-size: 12pt; 
+		    color: #ff66ff;
+		}
+		.messagesys .namecontainer{
+			display: inline;
+		}
+		.messagesys .name{
+			position: relative;
+			font-family: 'MajorShift'; 
+			font-size: 12pt; 
+		    color: #9933ff;
+		}
+
+		.messagesys .namecontainer:after{
+			position: relative;
+			font-family: 'MajorShift'; 
+			font-size: 12pt; 
+		    color: #9933ff;
+			content: ": ";
+		}
+
+
+
+		.messagetm .text{
+			position: relative;
+			font-family: 'NewsCycle'; 
+			font-size: 12pt; 
+		    color: #ffeeff;
+		}
+		.messagetm .namecontainer{
+		}
+		.messagetm .name{
+			position: relative;
+			font-family: 'MajorShift'; 
+			font-size: 12pt; 
+		    -webkit-transition: all 0.5s;
+			-moz-transition: all 0.5s;
+			transition: all 0.5s;
+			color: #fff;
+			-webkit-animation: neon1 1.5s ease-in-out infinite alternate;
+			animation: neon1 1.5s ease-in-out infinite alternate;
+		}
+
+		.messagetm .namecontainer:after{
+			position: relative;
+			font-family: 'MajorShift'; 
+			font-size: 12pt; 
+		    color: #9933ff;
+			content: ": ";
+		}
+
+		#world{
+			top: 20px;
+			left: 20px;
+			width: 820px;
+			height: 580px;
+			position: absolute;
+				
+		}
+
+		.newsticker{
+	  			display: table;
+				margin: 0 auto; 
+				font: normal 20px/1 "NewsCycle", Helvetica, sans-serif;
+ 				color: #FF1177;
+			}
+
+			.time{
+				font: normal 20px/1 "MajorShift", Helvetica, sans-serif;
+ 				color: #FF1177;
+ 					bottom: 1px;
+ 				position: absolute;
+}
+
+		.title{
+	  			display: table;
+				margin: 0 auto; 
+				font: normal 20px/1 "MajorShift", Helvetica, sans-serif;
+ 				color: #FF1177;
+ 				bottom: 1px;
+ 				position: absolute;
+			}
+
+
+	</style>
+	    <link rel="stylesheet" href="/tworat/css/animate.min.css">
+
+	<script type="text/javascript">
+
+		function loaded(){
+			onStart();
+		}
+	</script>
+</head>
+<body onload="loaded();">
+	<div class="content">
+	    <div class="time">...</div>
+	    <div class="title">Oxlamon's stream online</div>
+		<div id="root">
+    		  <div style="height:2000px"></div>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		var i = 0;
+		function fix(t) {
+		  return ((t.toString().length<2) ? "0" : "")+t;
+		}
+
+		window.setInterval(function() {
+			  var now = new Date();
+			  var date = now.toString().split(" ");
+			  var iTh = parseInt(date[2]);
+			  var th = "th";
+			  switch (iTh) {
+			      case 1:
+			        th = "st";
+			      break
+			      case 2:
+			        th = "nd";
+			      break
+			      case 3:
+			        th = "rd";
+			      break
+			  }
+
+			  i++;
+			  if( i < 10 ){
+			  	$(".title").show();
+			  	$(".time").hide();
+			  }else{
+			  	$(".title").hide();
+			  	$(".time").show();
+			  	if( i > 40 ) i = 0;
+			  }
+
+			  
+			  $(".time").text( fix(now.getHours())+':'+fix(now.getMinutes())+':'+fix(now.getSeconds()) );
+			}, 1000);
+
+		
+
+			$( document ).ready(function() {
+ 				
+
+				$('.title').novacancy({
+				'color': 'WHITE',
+				'glow': ['0 0 10px #fff', '0 0 20px #fff', '0 0 30px #fff', '0 0 40px #FF1177', '0 0 70px #FF1177', '0 0 80px #FF1177', '0 0 100px #FF1177', '0 0 150px #FF1177']
+
+				});
+
+				//
+ 			});
+	</script>
+</body>
+</html>

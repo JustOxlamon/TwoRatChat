@@ -1,0 +1,54 @@
+﻿<Window x:Class="TwoRatChat.Launcher.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        WindowStyle="None"  ResizeMode="NoResize"
+        AllowsTransparency="True" WindowStartupLocation="CenterScreen"
+        Background="Transparent"
+        Title="TwoRatChat Launcher" Height="250" Width="600">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="StyleLauncher.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="1.7*" />
+            <RowDefinition Height="1.7*" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Thumb DragDelta="Thumb_DragDelta" 
+               Grid.RowSpan="4" Grid.ColumnSpan="2" />
+
+        <TextBlock x:Name="Header" Foreground="WhiteSmoke" FontSize="28" 
+                   Grid.ColumnSpan="2" VerticalAlignment="Center" Margin="10,0"
+                   FontFamily="Century Gothic" IsHitTestVisible="False"
+                   Text="TwoRatChat has found the update!" HorizontalAlignment="Center" />
+
+
+        <ScrollViewer Grid.Row="1" Grid.RowSpan="2" Grid.ColumnSpan="2" Margin="0,0,4,0" 
+                      HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+
+
+            <TextBlock x:Name="News" Foreground="#FFF0F583" FontSize="12"
+                       VerticalAlignment="Top" HorizontalAlignment="Left"
+                       Margin="10,0" TextAlignment="Left" TextWrapping="Wrap"
+                       FontFamily="Consolas" IsHitTestVisible="False"
+                       Text="*" />
+        </ScrollViewer>
+
+        <Button x:Name="Button_Later" Grid.Column="0" Grid.Row="3" Margin="20,5" 
+                Content="Ask me later..." Click="Button_Click" />
+        <Button x:Name="Button_Download" 
+                Grid.Column="1" Grid.Row="3" Margin="20,5" Content="Download and update" Click="Button_Download_Click" />
+        
+    </Grid>
+</Window>

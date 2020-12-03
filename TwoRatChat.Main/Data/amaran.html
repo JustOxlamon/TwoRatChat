@@ -1,0 +1,98 @@
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="/tworat/js/jquery.amaran.min.js"></script>
+    <link rel="stylesheet" href="/tworat/css/animate.min.css">
+    <link rel="stylesheet" href="/tworat/css/amaran.min.css">
+    <script type="text/javascript">
+        var _rootChat = "/tworat/chat/";
+        var _rootAsset = "/tworat/";
+        var _maxMessages = 20;
+    </script>
+    <script src="/tworat/js/shared.js"></script>
+    <script src="/tworat/js/chat-amaran.js"></script>
+
+<style type="text/css">
+::-webkit-scrollbar {
+	visibility: hidden;
+}
+html, body {
+    background-color: rgba(255,255,255,0.0);
+    opacity: 0.99;
+    padding: 0 0 0 0;
+    margin: 0 0 0 0;
+    font-size: 20;
+}
+#root{
+	/*margin: -50px 30px 0px 0px;*/
+    height: 100%;
+    overflow:hidden;
+    z-index:-1; /* Remove this line if it's not going to be a background! */
+    /*-webkit-transform: rotateY(-10deg);*/
+}
+
+ @font-face {
+    font-family: 'Anonymous Pro'; /* Имя шрифта */
+    src: url(/tworat/fonts/Anonymous_Pro.ttf); /* Путь к файлу со шрифтом */
+}
+
+@font-face {
+    font-family: 'Anonymous Pro'; /* Имя шрифта */
+    src: url(/tworat/fonts/Anonymous_Pro_B.ttf); /* Путь к файлу со шрифтом */
+    font-weight: bold;
+}
+
+a{
+    color: green;
+}
+
+.amaran.myTheme{
+  background: rgba(255, 255, 255, 0.4); 
+  font-size: 16px;
+  padding:0px;
+  margin: 5px 10px;
+  width: 300px;
+}
+.amaran.myTheme .title {
+  font-size: 14px;
+  font-weight:bold;
+  display: block;
+  background: #442299;
+  padding:2px 2px 2px 2px;
+}
+
+.amaran.myTheme .inner-content{
+  margin: 5px 10px;
+}
+
+.amaran.myTheme .myDiv {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.amaran-wrapper{
+    left: 20%;
+}
+
+
+
+.name{
+    display: inline-block;
+    position: relative;
+	font-family: 'Anonymous Pro'; font-size: 12pt; 
+    
+    color: #8E87E6;
+    margin-right: 5px;
+    margin: 2px;
+}
+
+.text{
+    position: relative;
+	font-family: 'Anonymous Pro'; font-size: 10pt; 
+    color: #bbdddd;
+}
+
+</style>
+</head>
+<body onload="onStart();">
+</body>
+</html>

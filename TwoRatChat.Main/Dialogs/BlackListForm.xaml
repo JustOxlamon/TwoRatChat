@@ -1,0 +1,84 @@
+﻿<Window x:Class="TwoRatChat.BlackListForm" WindowStartupLocation="CenterScreen"
+        xmlns:loc="clr-namespace:TwoRatChat.Main.Properties" 
+        xmlns:data="clr-namespace:TwoRatChat.Main.Sources"
+     
+        ResizeMode="CanResizeWithGrip" ShowInTaskbar="False"
+        WindowStyle="None" Background="#88000000"
+        Topmost="{Binding Source={x:Static loc:Settings.Default}, Path=Window_TopMost, Mode=OneWay}"
+        AllowsTransparency="{Binding Source={x:Static loc:Settings.Default}, Path=Window_OverlayMode, Mode=OneTime}" 
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Height="200" Width="400">
+    <Window.Resources>
+        <ResourceDictionary>
+            <!--<ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="OptionsStyle.xaml" />
+            </ResourceDictionary.MergedDictionaries>-->
+            <DataTemplate x:Key="BlackItem">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1.5*" />
+                        <ColumnDefinition Width="3*" />
+                        <ColumnDefinition Width="3*" />
+                        <ColumnDefinition Width="32" />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBox Text="{Binding Nick}" Margin="3,1" ToolTip="Blacklisted viewer nickname." />
+
+                    <TextBox Grid.Column="1" Text="{Binding ReplaceText}" 
+                             Margin="3,1" ToolTip="Replace message (or leave blank to remove message)." />
+
+                    <ComboBox Grid.Column="2"
+                              SelectedValue="{Binding Source, Mode=TwoWay}"
+                              
+                              DisplayMemberPath="Title"
+                              SelectedValuePath="Id">
+                        <ComboBox.ItemsSource>
+                            <CompositeCollection>
+                                <ObjectDataProvider ObjectInstance="{x:Static data:SourceManager.All}"/>
+                                <CollectionContainer Collection="{Binding Source={x:Static data:SourceManager.Sources}}" />
+                            </CompositeCollection>
+                        </ComboBox.ItemsSource>
+                    </ComboBox>
+
+                    <Button Grid.Column="3" Content="r" Margin="1" 
+                        Width="30" Height="20" Tag="{Binding}" FontFamily="Webdings"
+                        Click="Button_Click_2" ToolTip="Remove from blacklist" />
+                </Grid>
+            </DataTemplate>
+
+            <ControlTemplate x:Key="SystemChatContent" TargetType="{x:Type ListBox}">
+                <ScrollViewer Background="Transparent" Focusable="false">
+                    <ItemsPresenter />
+                </ScrollViewer>
+            </ControlTemplate>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Thumb DragDelta="Thumb_DragDelta_1"
+               Grid.RowSpan="3" Style="{StaticResource DialogThumb}" />
+
+        <Label Content="TwoRatChat list editor." 
+               IsHitTestVisible="False" 
+               Style="{DynamicResource WindowHeaderStyle}" />
+      
+        <Button Click="Button_Click_1"  HorizontalAlignment="Right" FontFamily="Webdings"
+            Margin="5,2" Content="r" Width="32" Height="20"/>
+
+
+        <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Left" >
+            <Button FontFamily="Arial" Click="Button_Click_3"
+                    Margin="5,2" Content="+" Width="32" Height="20"/>
+        </StackPanel>
+        
+        <ListBox x:Name="bl" Grid.Row="2" Template="{DynamicResource SystemChatContent}" 
+                 ItemsSource="{Binding}" ItemTemplate="{StaticResource BlackItem}">
+        </ListBox>
+    </Grid>
+</Window>

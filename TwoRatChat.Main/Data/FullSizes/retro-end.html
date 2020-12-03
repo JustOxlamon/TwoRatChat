@@ -1,0 +1,336 @@
+<html>
+<head>
+ 	<meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="/tworat/FullSizes/js/jquery.cycleText.js"></script>
+    <script src="/tworat/FullSizes/js/jquery.novacancy.min.js"></script>    
+    <script type="text/javascript">
+        var _animShow ='fadeInUp';
+        var _animHide = 'fadeOutUp';
+
+        var _rootChat = "/tworat/chat/";
+        var _rootAsset = "/tworat/";
+        var _maxMessages = 20;
+    </script>
+    <script src="/tworat/js/shared.js"></script>
+    <script src="/tworat/js/chat.js"></script>
+	<title></title>
+	<style>
+		@font-face {
+			font-family: Neon; /* Имя шрифта */
+			src: url(Fonts/neon.ttf); /* Путь к файлу со шрифтом */
+		}
+		@font-face {
+			font-family: NewsCycle; /* Имя шрифта */
+			src: url(Fonts/NewsCycle-Regular.ttf); /* Путь к файлу со шрифтом */
+		}
+		@font-face {
+			font-family: MajorShift; /* Имя шрифта */
+			src: url(Fonts/major_shift.ttf); /* Путь к файлу со шрифтом */
+		}
+
+
+		@-webkit-keyframes neon1 {
+		  from {
+		    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #FF1177, 0 0 70px #FF1177, 0 0 80px #FF1177, 0 0 100px #FF1177, 0 0 150px #FF1177;
+		  }
+		  to {
+		    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #FF1177, 0 0 35px #FF1177, 0 0 40px #FF1177, 0 0 50px #FF1177, 0 0 75px #FF1177;
+		  }
+		}
+
+		@keyframes neon6 {
+		  from {
+		    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #ff00de, 0 0 70px #ff00de, 0 0 80px #ff00de, 0 0 100px #ff00de, 0 0 150px #ff00de;
+		  }
+		  to {
+		    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #ff00de, 0 0 35px #ff00de, 0 0 40px #ff00de, 0 0 50px #ff00de, 0 0 75px #ff00de;
+		  }
+		}
+
+
+
+		@-webkit-keyframes backanim {
+		    0%{background-position:36% 0%}
+		    50%{background-position:65% 100%}
+		    100%{background-position:36% 0%}
+		}
+		@-moz-keyframes backanim {
+		    0%{background-position:36% 0%}
+		    50%{background-position:65% 100%}
+		    100%{background-position:36% 0%}
+		}
+		@keyframes backanim { 
+		    0%{background-position:36% 0%}
+		    50%{background-position:65% 100%}
+		    100%{background-position:36% 0%}
+		}
+
+html{
+	text-align: justify ;
+}
+
+		#root{
+			left: 430px;
+			top: 140px;
+			position: absolute;
+			width: 400px;
+			max-height: 400px;
+			overflow:hidden;    
+
+			margin: 2px;
+			padding: 10px;
+
+		}
+	
+		.content{
+			background-color: #222222;
+  			background: repeating-linear-gradient(-45deg, #2b2b2b 0%, #2b2b2b 10%, #222222 0%, #222222 50%) 0 / 15px 15px;
+			width: 1280px;
+			height: 720px;
+			position: relative;
+
+
+		-webkit-animation: backanim 100s infinite;
+		-moz-animation: backanim 100s infinite;
+		animation: backanim 100s infinite;
+		}
+
+		/*chat*/
+		.message .text{
+			font-family: 'NewsCycle'; 
+			font-size: 12pt; 
+		    color: #ff66ff;
+
+		}
+		.message .namecontainer{
+		}
+		.message .name{
+			font-family: 'MajorShift'; 
+			font-size: 12pt; 
+		    color: #9933ff;
+		}
+
+		.message .namecontainer:after{
+			font-family: 'MajorShift'; 
+			font-size: 12pt; 
+		    color: #9933ff;
+			content: ": ";
+		}
+
+
+		.messagesys .text{
+			position: relative;
+			font-family: 'NewsCycle'; 
+			font-size: 12pt; 
+		    color: #ff66ff;
+		}
+		.messagesys .namecontainer{
+			display: inline;
+		}
+		.messagesys .name{
+			position: relative;
+			font-family: 'MajorShift'; 
+			font-size: 12pt; 
+		    color: #9933ff;
+		}
+
+		.messagesys .namecontainer:after{
+			position: relative;
+			font-family: 'MajorShift'; 
+			font-size: 12pt; 
+		    color: #9933ff;
+			content: ": ";
+		}
+
+
+
+		.messagetm .text{
+			position: relative;
+			font-family: 'NewsCycle'; 
+			font-size: 12pt; 
+		    color: #ffeeff;
+		}
+		.messagetm .namecontainer{
+		}
+		.messagetm .name{
+			position: relative;
+			font-family: 'MajorShift'; 
+			font-size: 12pt; 
+		    -webkit-transition: all 0.5s;
+			-moz-transition: all 0.5s;
+			transition: all 0.5s;
+			color: #fff;
+			-webkit-animation: neon1 1.5s ease-in-out infinite alternate;
+			animation: neon1 1.5s ease-in-out infinite alternate;
+		}
+
+		.messagetm .namecontainer:after{
+			position: relative;
+			font-family: 'MajorShift'; 
+			font-size: 12pt; 
+		    color: #9933ff;
+			content: ": ";
+		}
+
+		#world{
+			top: 20px;
+			left: 20px;
+			width: 820px;
+			height: 580px;
+			position: absolute;
+				
+		}
+
+		@keyframes neon2 {
+		  from {
+		    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #228DFF, 0 0 70px #228DFF, 0 0 80px #228DFF, 0 0 100px #228DFF, 0 0 150px #228DFF;
+		  }
+		  to {
+		    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #228DFF, 0 0 35px #228DFF, 0 0 40px #228DFF, 0 0 50px #228DFF, 0 0 75px #228DFF;
+		  }
+		}
+
+	
+
+		.newsticker{
+	  			display: table;
+				margin: 0 auto; 
+				font: normal 40px/1 "Neon", Helvetica, sans-serif;
+ 				color: #FF1177;
+			}
+
+			.time{
+	  			display: table;
+				margin: 0 auto; 
+				font: normal 40px/1 "Neon", Helvetica, sans-serif;
+ 				color: #FF1177;
+			}
+				.subtext{
+	  			display: table;
+				margin: 0 auto; 
+				font: normal 40px/1 "Neon", Helvetica, sans-serif;
+ 				color: #FF1177;
+			}
+
+		.gamename{
+			display: table;
+			margin: 0 auto; 
+	
+			font: normal 60px/1 "MajorShift", Helvetica, sans-serif;
+			text-decoration: none;
+            -webkit-transition: all 0.5s;
+			-moz-transition: all 0.5s;
+			transition: all 0.5s;
+			color: #fff;
+			-webkit-animation: neon6 1.5s ease-in-out infinite alternate;
+			animation: neon6 1.5s ease-in-out infinite alternate;
+		}
+
+
+		.title {
+			font: normal 90px/1 "Neon", Helvetica, sans-serif;
+/*			text-decoration: none;
+            -webkit-transition: all 0.5s;
+			-moz-transition: all 0.5s;
+			transition: all 0.5s;
+			color: #fff;
+			-webkit-animation: neon1 1.5s ease-in-out infinite alternate;
+			animation: neon1 1.5s ease-in-out infinite alternate;*/
+			bottom: 20px;
+			left: 200px;
+			position: absolute;
+		}
+
+
+	</style>
+	    <link rel="stylesheet" href="/tworat/css/animate.min.css">
+
+	<script type="text/javascript">
+
+		function loaded(){
+			onStart();
+		}
+	</script>
+</head>
+<body onload="loaded();">
+	<div class="content">
+		
+		<div class="title">Oxlamon offline</div>
+	<br />
+		<div class="newsticker"><span id="demo">Это конец...|Все закончилось|Ты опять не успел|Так надо, смирись.</span></div>
+		
+		  <div class="time">
+		    Stream
+		  </div>
+
+ <div class="subtext">
+		    Стрим окончен, идите спать
+		  </div>
+	
+		<div id="root">
+    		  <div style="height:2000px"></div>
+		</div>
+
+
+	
+		
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		var i = 0;
+		function fix(t) {
+		  return ((t.toString().length<2) ? "0" : "")+t;
+		}
+
+		window.setInterval(function() {
+			  var now = new Date();
+			  var date = now.toString().split(" ");
+			  var iTh = parseInt(date[2]);
+			  var th = "th";
+			  switch (iTh) {
+			      case 1:
+			        th = "st";
+			      break
+			      case 2:
+			        th = "nd";
+			      break
+			      case 3:
+			        th = "rd";
+			      break
+			  }
+
+			 /* i++;
+			  if( i < 10 ){
+			  	$(".date").text( date[0]+' '+date[2]+th+' of '+date[1]+' '+date[3] );	
+			  }else{
+				$(".date").text("this is oxlamon stream");
+				$(".date").toggleclass("fadeOut");
+				if( i>12 ) i=0;
+			  }*/
+
+			  
+			  $(".time").text( fix(now.getHours())+':'+fix(now.getMinutes())+':'+fix(now.getSeconds()) );
+			}, 1000);
+
+		
+
+			$( document ).ready(function() {
+ 				$('#demo').cycleText({
+					separator: '|',
+					animation: 'flipInX',
+					interval: 10000
+				});
+
+				$('.title').novacancy({
+				'color': 'WHITE',
+				'glow': ['0 0 10px #fff', '0 0 20px #fff', '0 0 30px #fff', '0 0 40px #FF1177', '0 0 70px #FF1177', '0 0 80px #FF1177', '0 0 100px #FF1177', '0 0 150px #FF1177']
+
+				});
+
+				//
+ 			});
+	</script>
+</body>
+</html>
