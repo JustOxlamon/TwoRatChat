@@ -377,7 +377,7 @@ namespace TwoRatChat.Main.Sources {
         DateTime _ping = DateTime.Now;
 
         void ws_MessageReceived( object sender, MessageReceivedEventArgs e ) {
-            Console.WriteLine( e.Message );
+            //Console.WriteLine( e.Message );
 
 
 

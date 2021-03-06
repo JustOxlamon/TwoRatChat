@@ -21,7 +21,8 @@ using TwoRatChat.Main.Model;
 
 namespace TwoRatChat.Model {
     internal class Chat {
-    //    string _customUsersPath = 
+        //    string _customUsersPath = 
+        readonly HashSet<string> _firstMessages = new HashSet<string>();
 
         private Dispatcher _dispatcher;
         private ChatArgs _args;
@@ -30,7 +31,6 @@ namespace TwoRatChat.Model {
         ObservableCollection<ChatSource> _sources;
         ObservableCollection<BotSender> _bots;
         ObservableCollection<ChatMessage> _systemMessages;
-        ObservableCollection<ChatMessage> _firstMessages;
         List<Command> _commands = new List<Command>();
        // LevelManager _LevelManager;
 
@@ -39,11 +39,12 @@ namespace TwoRatChat.Model {
         public ObservableCollection<BotSender> Bots { get { return _bots; } }
         public ObservableCollection<ChatSource> Sources { get { return _sources; } }
         public ObservableCollection<ChatMessage> SystemMessages { get { return _systemMessages; } }
-        public ObservableCollection<ChatMessage> FirstMessages { get { return _firstMessages; } }
+
+        //public ObservableCollection<ChatMessage> FirstMessages { get { return _firstMessages; } }
         //public Dictionary<string, PersonalData> PersonalData { get; private set; }
-        List<ChatMessage> _messages;
-        HashSet<Guid> _messageGIDs;
-        HashSet<ChatActuator> _actuators = new HashSet<ChatActuator>();
+        readonly List<ChatMessage> _messages;
+        readonly HashSet<Guid> _messageGIDs;
+        readonly HashSet<ChatActuator> _actuators = new HashSet<ChatActuator>();
 
         public CustomUsers CustomUsers { get; set; }
 
@@ -78,7 +79,7 @@ namespace TwoRatChat.Model {
             this._bots = new ObservableCollection<BotSender>();
             this._messages = new List<ChatMessage>();
             this._messageGIDs = new HashSet<Guid>();
-            this._firstMessages = new ObservableCollection<ChatMessage>();
+           // this._firstMessages = new ObservableCollection<ChatMessage>();
 
             this.BlackList = new BlackList();
             this.FortuneList = new FortuneList();
@@ -303,11 +304,46 @@ namespace TwoRatChat.Model {
             //Console.WriteLine( "CLEAR!" );
         }
 
-        bool checkOnFirst(ChatMessage msg) {
-            foreach ( var m in _firstMessages )
-                if ( m.Name == msg.Name && m.Source == msg.Source )
-                    return false;
-            return true;
+        //bool checkOnFirst(ChatMessage msg) {
+        //    foreach ( var m in _firstMessages )
+        //        if ( m.Name == msg.Name && m.Source == msg.Source )
+        //            return false;
+        //    return true;
+        //}
+
+        const string _cmdSetWelcome = "axel=";
+
+        void onTrustedMessage( CustomUserItem user, ChatMessage message ) {
+            if(!string.IsNullOrEmpty( message.Text )) {
+
+                if(message.Text.StartsWith( _cmdSetWelcome )) {
+                    if((DateTime.Now - user.LastWelcomeChanged).TotalMinutes > 10) {
+                        user.LastWelcomeChanged = DateTime.Now;
+
+                        string text = message.Text.Substring( _cmdSetWelcome.Length ).Trim();
+
+                        if(string.IsNullOrEmpty( text )) {
+                            if(user.WelcomePhrase != string.Empty) {
+                                user.WelcomePhrase = string.Empty;
+                            }
+                        } else {
+                            if(isAllCharactersValid( text )) {
+                                user.WelcomePhrase = text;
+                                _firstMessages.Remove( user.UserSource );
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
+
+        static readonly HashSet<char> _validCharacters = new HashSet<char>( 
+            "йцукенгшщзхъфывапролджэячсмитьбюё 1234567890!?.,;:()_-+*$%<>" 
+        );
+
+        private bool isAllCharactersValid( string text ) {
+            return text.ToLower().All( c => _validCharacters.Contains( c ) );
         }
 
         void cs_OnNewMessages( IEnumerable<ChatMessage> messages ) {
@@ -320,62 +356,17 @@ namespace TwoRatChat.Model {
                     m.Text = user.GetReplaceText( m.Text );
 
                     if( !string.IsNullOrEmpty( m.Text ) ) {
-
-                        //if ( TwoRatChat.Main.Properties.Settings.Default.allowLeveling ) {
-                        //    if ( _LevelManager.OnMessage( m ) ) {
-                        //        // add message on level
-                        //        lock ( _locker ) {
-                        //            _messages.Add( new ChatMessage() {
-                        //                ToMe = true,
-                        //                Date = DateTime.Now,
-                        //                Source = null,
-                        //                Name = "TwoRatChat",
-                        //                Text = string.Format( TwoRatChat.Main.Properties.Settings.Default.promouteMessage, m.Name, _LevelManager.GetLevelName(m.Name) )
-                        //            } );
-                        //        }
-
-                        //        if ( m.Source != null )
-                        //            if ( !string.IsNullOrEmpty( Main.Properties.Settings.Default.voice_Promoute ) ) {
-                        //                TwoRatChat.Commands.CommandFactory.Talk(
-                        //                    Main.Properties.Settings.Default.voice_voiceId,
-                        //                    string.Format( Main.Properties.Settings.Default.voice_Promoute, m.Name, _LevelManager.GetLevelName( m.Name ), m.Source.Id, m.Text ) );
-                        //            }
-                        //    }
-                        //}
-
-                        lock( _locker ) {
+                        lock(_locker) {
                             _messages.Add( m );
                             _messageGIDs.Add( m.GID );
 
-                            foreach( var act in _actuators )
+                            foreach(var act in _actuators)
                                 act.OnMessage( m );
 
-                            if( checkOnFirst( m ) ) {
-                                _firstMessages.Add( m );
-                                user.OnMessage( m, true );
-                                //if ( !string.IsNullOrEmpty( Main.Properties.Settings.Default.soundOnMessage ) ) {
-                                //    string[] d = Main.Properties.Settings.Default.soundOnMessage.Split( '.' );
-                                //    TwoRatChat.Commands.CommandFactory.Fire( d[0], d[1] );
-                                //}
-                                //if ( m.Source != null ) {
-                                //    PersonalData pd;
-                                //    if ( PersonalData.TryGetValue( m.Name, out pd ) ) {
-                                //        if ( !string.IsNullOrEmpty( pd.VoiceHello ) ) {
-                                //            TwoRatChat.Commands.CommandFactory.Talk(
-                                //                Main.Properties.Settings.Default.voice_voiceId,
-                                //                string.Format( pd.VoiceHello, m.Name, m.Source.Id, m.Text ) );
-                                //        }
-                                //    } else {
-                                //        if ( !string.IsNullOrEmpty( Main.Properties.Settings.Default.voice_FirstMeet ) ) {
-                                //            TwoRatChat.Commands.CommandFactory.Talk(
-                                //                Main.Properties.Settings.Default.voice_voiceId,
-                                //                string.Format( Main.Properties.Settings.Default.voice_FirstMeet, m.Name, m.Source.Id, m.Text ) );
-                                //        }
-                                //    }
-                                //}
-                            } else {
-                                user.OnMessage( m, false );
-                            }
+                            if(!user.Untrusted)
+                                onTrustedMessage( user, m );
+
+                            user.OnMessage( m, _firstMessages.Add( m.UserSource ) );
                         }
 
                         onMessage( m );

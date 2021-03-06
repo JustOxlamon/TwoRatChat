@@ -24,6 +24,8 @@
                 
                 <DataGridTextColumn x:Name="nicknameColumn" Width="200" 
                                     Header="Nickname" Binding="{Binding Nickname}"/>
+                <DataGridCheckBoxColumn x:Name="UntrustedColumn" Width="SizeToHeader"
+                                        Header="Untrusted" Binding="{Binding Untrusted}"/>
 
                 <DataGridCheckBoxColumn x:Name="blacklistedColumn" Width="SizeToHeader" Header="Blacklisted" Binding="{Binding Blacklisted}"/>
                 <DataGridTextColumn x:Name="blacklistPhraseColumn" Width="SizeToHeader" Header="Blacklist Phrase" Binding="{Binding BlacklistPhrase}"/>

@@ -77,6 +77,8 @@ namespace TwoRatChat.Model {
         [JsonIgnore]
         protected List<Uri> Badges { get; set; }
 
+        public string UserSource => $"{Name}:{Source?.Id}";
+
         string badgesAsJson() {
             if ( Badges == null || Badges.Count == 0 )
                 return "[]";

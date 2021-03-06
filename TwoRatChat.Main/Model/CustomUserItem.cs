@@ -28,6 +28,8 @@ namespace TwoRatChat.Main.Model {
         int _level = 0;
         [DataMember]
         DateTime _lastMessage;
+        [DataMember]
+        string _welcomePhrase;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -37,8 +39,7 @@ namespace TwoRatChat.Main.Model {
         public string Nickname { get; set; }
         [DataMember]
         public bool Blacklisted { get; set; }
-        [DataMember]
-        public string WelcomePhrase { get; set; }
+
         [DataMember]
         public string BlacklistPhrase { get; set; }
         [DataMember]
@@ -47,7 +48,26 @@ namespace TwoRatChat.Main.Model {
         public string VoiceId { get; set; }
         [DataMember]
         public string Alias { get; set; }
+        [DataMember]
+        public bool Untrusted { get; set; }
 
+        [IgnoreDataMember]
+        public DateTime LastWelcomeChanged { get; set; } = new DateTime( 1983, 2, 2 );
+
+        public string UserSource => $"{Nickname}:{Source}";
+
+        [IgnoreDataMember]
+        public string WelcomePhrase {
+            get {
+                return _welcomePhrase;
+            }
+            set {
+                if(_welcomePhrase != value) {
+                    _welcomePhrase = value;
+                    raisePropertyChanged( "WelcomePhrase" );
+                }
+            }
+        }
 
         [IgnoreDataMember]
         public DateTime LastMessage {
@@ -166,6 +186,8 @@ namespace TwoRatChat.Main.Model {
             }
             this.Expirience += message.Text.Length / 10;
         }
+
+        public string NicknameOrAlias => string.IsNullOrEmpty( Alias ) ? Nickname : Alias;
     }
 
 
@@ -193,8 +215,7 @@ namespace TwoRatChat.Main.Model {
 
         public CustomUserItem GetOrCreateUser( Dispatcher dispartcher, string source, string nickName ) {
             string key = source + ":" + nickName;
-            CustomUserItem item;
-            if( _helper.TryGetValue(key, out item ) ) {
+            if(_helper.TryGetValue( key, out CustomUserItem item )) {
                 return item;
             }
 
@@ -203,8 +224,10 @@ namespace TwoRatChat.Main.Model {
                 Nickname = nickName,
                 Level = 1,
                 Expirience = 0,
-                ReadMessages = false
+                ReadMessages = false,
+                Untrusted = false
             };
+
             _helper[key] = item;
             Add( item );
             return item;
